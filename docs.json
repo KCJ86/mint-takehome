@@ -120,6 +120,97 @@
             ]
           }
         ]
+      },
+      {
+        "language": "fr",
+        "versions": [
+          {
+            "version": "v2",
+            "tabs": [
+              {
+                "tab": "Documentation",
+                "groups": [
+                  {
+                    "group": "Vue D'ensemble",
+                    "pages": [
+                      "fr/v2/index",
+                      "fr/v2/getting-started",
+                      "fr/v2/changelog"
+                    ]
+                  },
+                  {
+                    "group": "Fonctionnalités Principales",
+                    "pages": [
+                      "fr/v2/inventory",
+                      "fr/v2/quality",
+                      "fr/v2/analytics"
+                    ]
+                  },
+                  {
+                    "group": "Avancé",
+                    "pages": ["fr/v2/advanced-usage", "fr/v2/integrations"]
+                  },
+                  {
+                    "group": "Assistance",
+                    "pages": ["fr/v2/troubleshooting", "fr/v2/pricing"]
+                  }
+                ]
+              },
+              {
+                "tab": "API Référence",
+                "groups": [
+                  {
+                    "group": "API",
+                    "pages": ["fr/v2/api-reference"]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "version": "v1",
+            "tabs": [
+              {
+                "tab": "Documentation",
+                "groups": [
+                  {
+                    "group": "Vue D'ensemble",
+                    "pages": [
+                      "fr/v1/index",
+                      "fr/v1/getting-started",
+                      "fr/v1/changelog"
+                    ]
+                  },
+                  {
+                    "group": "Fonctionnalités Principales",
+                    "pages": [
+                      "fr/v1/inventory",
+                      "fr/v1/quality",
+                      "fr/v1/analytics"
+                    ]
+                  },
+                  {
+                    "group": "Intégrations et Assistance",
+                    "pages": [
+                      "fr/v1/integrations",
+                      "fr/v1/troubleshooting",
+                      "fr/v1/pricing"
+                    ]
+                  }
+                ]
+              },
+              {
+                "tab": "API Référence",
+                "groups": [
+                  {
+                    "group": "API",
+                    "pages": ["fr/v1/api-reference"]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     ]
   }
