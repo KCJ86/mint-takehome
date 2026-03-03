@@ -1,0 +1,17 @@
+# dependencies
+node_modules/
+
+# Mintlify local artifacts 
+.mintlify/
+
+# env / secrets
+.env
+.env.*
+
+# OS / editor noise
+.DS_Store
+.vscode/
+
+# builds
+dist/
+build/
