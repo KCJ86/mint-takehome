@@ -57,7 +57,7 @@
                 "groups": [
                   {
                     "group": "Overview",
-                    "pages": ["v2/index", "v2/getting-started", "v2/channelog"]
+                    "pages": ["v2/index", "v2/getting-started", "v2/changelog"]
                   },
                   {
                     "group": "Core Features",
@@ -79,6 +79,41 @@
                   {
                     "group": "API",
                     "pages": ["v2/api-reference"]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "version": "v1",
+            "tabs": [
+              {
+                "tab": "Documentation",
+                "groups": [
+                  {
+                    "group": "Overview",
+                    "pages": ["v1/index", "v1/getting-started", "v1/changelog"]
+                  },
+                  {
+                    "group": "Core Features",
+                    "pages": ["v1/inventory", "v1/quality", "v1/analytics"]
+                  },
+                  {
+                    "group": "Integrations & Support",
+                    "pages": [
+                      "v1/integrations",
+                      "v1/troubleshooting",
+                      "v1/pricing"
+                    ]
+                  }
+                ]
+              },
+              {
+                "tab": "API Reference",
+                "groups": [
+                  {
+                    "group": "API",
+                    "pages": ["v1/api-reference"]
                   }
                 ]
               }
