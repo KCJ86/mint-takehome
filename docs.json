@@ -70,6 +70,10 @@
                   {
                     "group": "Support",
                     "pages": ["v2/troubleshooting", "v2/pricing"]
+                  },
+                  {
+                    "group": "Deliverables",
+                    "pages": ["deliverables/navigation-decision-T1"]
                   }
                 ]
               },

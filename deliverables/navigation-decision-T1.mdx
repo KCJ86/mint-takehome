@@ -1,0 +1,201 @@
+---
+title: "Navigation Design Decisions"
+description: "How I came up with structure, scalability, and user experience - to answer Task 1"
+icon: "map"
+---
+
+<Note>
+  This page explains the reasoning behind the 'docs.json' navigation
+  architecture. Its my brief what I built and why!!
+</Note>
+
+## The Challenge
+
+Three levels of complexity needed to be worked in to not overwhelm and provide enough access to the user
+
+<CardGroup cols={3}>
+  <Card title="2 Versions" icon="code-branch" color="#16A34A">
+    Users will be able to understand what version they are using by identifying
+    the difference between the V1 (simple) and the v2 (AI-powered)
+  </Card>
+  <Card title="2 Languages" icon="globe" color="#07C983">
+    In this the users are able to differentiate between the two languages and
+    navigate through them easily with the group and tabs being translated in
+    real time
+  </Card>
+  <Card title="3 User Types" icon="users" color="#15803D">
+    We can partition the three users those who are new being onboarded,
+    experienced users who are referencing the features, and devs integrating for
+    API
+  </Card>
+</CardGroup>
+
+---
+
+## The Hierarchy
+
+The navigation chosen was nested into three layers.
+Most of this came from the global settings and tbe navigation nesting section.
+
+ <Steps>
+    <Step title="Language (outermost layer)">
+        A French speaking user should not have to navigate an english sidebar to find the french language option.
+        There should be an ease of access in the way that we toggle between languages.
+        Language and ease of access is how we set up a user experience to the utmost success globally. 
+        So in our navigation we set up the languages as the first layer with our 'en' and 'fr' that we referenced in the codes of supported languages to that way be able to do the same in english as in french.
+
+        With Mintlify's langauges key too we are able to render a header that automatically switches the tabs without any further custom UI necessary. This allows us to localize it per language.
+
+    </Step>
+    <Step title="Version (inner layer)">
+        Within the context of each language we have to handle version control. A user utilizing v1 should be able to differentiate them especially when there are exclusive features like in v2.
+        v2 is the default as the most recent version with a dropdown available for access to v1.
+    </Step>
+    <Step title="Tabs (innermost layer)">
+        In the tabs we split them into what seemed to be focused on documentation and the API reference tab. This allows for different users to access their intended purpose without having to go ver far in the search.
+        The more conceptual and operational files went into documentation. The task and reference specific went into the API using this removes extra search and noise for both users.
+    </Step>
+
+ </Steps>
+
+---
+
+## Sidebar Structure
+
+Inside the Documentation tab, pages are grouped to match the natural user journey.
+
+<Tabs>
+  <Tab title="v2 Structure">
+    <CardGroup cols={2}>
+      <Card title="Overview" icon="house">
+        `index` · `getting-started` · `changelog`
+
+        For new users and returning visitors checking what's changed.
+      </Card>
+      <Card title="Core Features" icon="sliders">
+        `inventory` · `quality` · `analytics`
+
+        For operators and managers using the product daily.
+      </Card>
+      <Card title="Advanced" icon="bolt">
+        `advanced-usage` · `integrations`
+
+        For power users, enterprise teams, and IT leads.
+      </Card>
+      <Card title="Support" icon="life-ring">
+        `troubleshooting` · `pricing`
+
+        For anyone hitting an issue or evaluating the product.
+      </Card>
+    </CardGroup>
+
+  </Tab>
+  <Tab title="v1 Structure">
+    <CardGroup cols={2}>
+      <Card title="Overview" icon="house">
+        `index` · `getting-started` · `changelog`
+
+        Same onboarding path as v2.
+      </Card>
+      <Card title="Core Features" icon="sliders">
+        `inventory` · `quality` · `analytics`
+
+        Identical to v2 —-- these features exist in both versions.
+      </Card>
+      <Card title="Integrations & Support" icon="life-ring">
+        `integrations` · `troubleshooting` · `pricing`
+
+        Merged into one group —-- no Advanced section needed in v1.
+      </Card>
+    </CardGroup>
+
+  </Tab>
+</Tabs>
+<Info>
+  The **Advanced** group exists only in v2. `advanced-usage.mdx` (AI
+  forecasting, IoT, automation) is a v2-exclusive feature — surfacing it in v1's
+  sidebar would be actively misleading.
+</Info>
+
+---
+
+## Key UX Decisions
+
+<AccordionGroup>
+  <Accordion title="Why is Changelog in Overview, not at the bottom?" icon="clock-rotate-left">
+    Returning users often check the changelog *first* before anything else. Burying it at the bottom of the sidebar means they have to scroll past everything they already know to find the one thing they came for.
+
+    Placing it in Overview puts it where returning users look, while still being naturally grouped with the other intro pages.
+
+  </Accordion>
+  <Accordion title="Why tabs for API Reference instead of a sidebar group?" icon="rectangle-vertical-history">
+    Mintlify supports both tabs and anchors for needed splits. Tabs were the right call here because the Docs/API divide is **audience focused**, not just a content category. A developer on the API tab doesn't want to scroll past inventory management.
+
+    Anchors are better suited for supplementary resources (blog, status page, changelog site) that sit alongside the main docs, not inside them.
+
+  </Accordion>
+  <Accordion title="Why flat groups instead of nested navigation?" icon="list-tree">
+    With 10–11 pages per version, nesting creates unnecessary friction. Every extra click to expand a sub-group is a small tax on the user. Flat groups with clear labels are faster to scan and just as organised at this scale.
+
+    Nesting becomes valuable when a single category has 6+ pages of its own and at that point grouping reduces cognitive load. Similar to how in the Mintlify docs once we reached the components we needed to create an anchor to reduced having all the components making the side tab too large. Structurally this will suffice!
+
+  </Accordion>
+  <Accordion title="Why separate navigation trees per language instead of a content switcher?" icon="language">
+    A content only switcher would translate page text but leave the sidebar in English with group names, tab labels, and ordering would all stay the same. That's a poor experience for French users.
+
+    Mintlify's `languages` key creates entirely separate navigation trees, so French users get `"Vue d'ensemble"` not `"Overview"`, `"Référence API"` not `"API Reference"`, and so on. The whole experience is localised, not just the pages.
+
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Trade-offs
+
+<Warning>
+  Every navigation decision involves a trade-off. Here are the ones I weighed
+  most carefully.
+</Warning>
+
+**Language-first vs. Version-first hierarchy**
+
+Putting versions at the top would make sense if most users were migrating between versions frequently. In practice, a user is on v1 or v2 — they don't switch versions mid-session. Language, on the other hand, affects every single interaction from the moment they land. Language wins.
+
+**Separate language trees vs. a URL-based locale system**
+
+A `/fr/` URL prefix approach would also work and is common in larger doc sites. The `languages` key approach was chosen here because Mintlify supports it natively, it requires no custom routing logic, and it keeps the `docs.json` readable. At larger scale (5+ languages, 100+ pages), a URL-locale system may be worth the added complexity.
+
+**One combined "Support" group vs. separate Troubleshooting and Pricing pages**
+
+Separating them would give each page more visual weight in the sidebar. But at 10–11 pages per version, every group addition increases scroll length. Grouping them together keeps the sidebar tight. If either page grows into a multi-page section (e.g. a full pricing comparison hub or an expanded troubleshooting knowledge base), splitting them out is a natural next step.
+
+---
+
+## How This Scales
+
+<CardGroup cols={2}>
+  <Card title="New Languages" icon="plus" color="#16A34A">
+    Add a new entry to the `languages` array. Copy the existing pattern. No
+    structural changes needed to support Spanish, German, Japanese, or any other
+    locale.
+  </Card>
+  <Card title="New Versions" icon="code-branch" color="#07C983">
+    Add a new entry to the `versions` array. v3 slots in above v2, v2 drops to
+    second, v1 eventually gets deprecated and removed. Clean and additive.
+  </Card>
+  <Card title="New Feature Pages" icon="file-plus" color="#15803D">
+    New pages slot into existing groups (Core Features, Advanced) without
+    touching the hierarchy. The structure absorbs growth without restructuring.
+  </Card>
+  <Card title="New Content Types" icon="rectangle-history" color="#16A34A">
+    Adding a Tutorials tab, Security reference, or Release Notes tab is a single
+    block addition inside a version. Existing tabs are completely unaffected.
+  </Card>
+</CardGroup>
+
+---
+
+<Tip>
+  The best navigation structure is the one users already know where things are
+  expected it to be.
+</Tip>
