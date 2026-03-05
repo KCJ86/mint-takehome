@@ -3,117 +3,229 @@ title: "Intégrations"
 description: "Connectez Salsa as a Service v2.0 avec 50+ systèmes de restaurant, plateformes POS et outils d'entreprise"
 ---
 
-# Intégrations
-
-Salsa as a Service v2.0 se connecte de manière transparente avec votre stack technologique de restaurant existant. Avec 50+ intégrations pré-construites et une API flexible, vous pouvez unifier vos opérations.
-
 ## Catégories d'intégration
 
+<CardGroup cols={3}>
+  <Card title="Point de vente (POS)" icon="cash-register" href="#systemes-pos">
+    Connectez avec les principales plateformes POS pour synchronisation en temps
+    réel.
+  </Card>
+  <Card
+    title="Chaîne d'approvisionnement"
+    icon="truck"
+    href="#chaine-approvisionnement"
+  >
+    Intégrez avec distributeurs alimentaires pour commandes automatisées.
+  </Card>
+  <Card title="Gestion de cuisine" icon="utensils" href="#systemes-cuisine">
+    Synchronisez avec KDS, gestion de recettes et systèmes d'automatisation.
+  </Card>
+  <Card title="Systèmes d'entreprise" icon="building" href="#entreprise">
+    Connectez avec ERP, comptabilité et plateformes d'intelligence d'affaires.
+  </Card>
+  <Card title="Communication" icon="bell" href="#communication">
+    Intégrez avec Slack, Teams, SMS et autres outils de communication.
+  </Card>
+  <Card title="IoT et matériel" icon="signal" href="#iot-materiel">
+    Connectez capteurs, balances et équipement de cuisine intelligent.
+  </Card>
+</CardGroup>
 
-**[Point de vente (POS)](#systemes-pos)**  
-Connectez avec les principales plateformes POS pour synchronisation en temps réel.
-
-**[Chaîne d'approvisionnement](#chaine-approvisionnement)**  
-Intégrez avec distributeurs alimentaires pour commandes automatisées.
-
-**[Gestion de cuisine](#systemes-cuisine)**  
-Synchronisez avec KDS, gestion de recettes et systèmes d'automatisation.
-
-**[Systèmes d'entreprise](#entreprise)**  
-Connectez avec ERP, comptabilité et plateformes d'intelligence d'affaires.
-
-**[Communication](#communication)**  
-Intégrez avec Slack, Teams, SMS et autres outils de communication.
-
-**[IoT et matériel](#iot-materiel)**  
-Connectez capteurs, balances et équipement de cuisine intelligent.
-
-
+---
 
 ## Systèmes de point de vente
 
 ### Intégrations POS populaires
 
-
-#### Square
-
-**Niveau d'intégration** : ⭐⭐⭐⭐⭐ Native
+<Tabs>
+  <Tab title="Square">
+    <Badge color="green" shape="rounded" size="md">⭐⭐⭐⭐⭐ Native</Badge>
+    <Badge color="blue" shape="rounded" size="md">Configuration : 5 mins</Badge>
 
     **Fonctionnalités :**
     - Synchronisation des ventes en temps réel (délai < 5 secondes)
     - Mises à jour bidirectionnelles d'inventaire
     - Mappage automatique du menu avec IA
     - Support multi-emplacements
+    - Réconciliation des paiements
 
-    **Temps de configuration** : 5 minutes
-
-    ```bash
+```bash
     # Configuration rapide via CLI
     salsa integrations add square \
       --oauth \
       --locations all \
       --sync realtime
-    ```
+```
 
-#### Toast
-
-**Niveau d'intégration** : ⭐⭐⭐⭐⭐ Native
+  </Tab>
+  <Tab title="Toast">
+    <Badge color="green" shape="rounded" size="md">⭐⭐⭐⭐⭐ Native</Badge>
+    <Badge color="blue" shape="rounded" size="md">Configuration : 10 mins</Badge>
+    <Badge color="gray" shape="rounded" size="md">Toast API v2</Badge>
 
     **Fonctionnalités :**
     - Synchronisation menu et inventaire en temps réel
-    - Support de structures de menu complexes
+    - Support de structures de menu complexes (modificateurs, combos)
     - Groupes de restaurants multi-emplacements
-    - Synchronisation main-d'œuvre
+    - Intégration main-d'œuvre
+    - Synchronisation cartes cadeaux et fidélité
 
-    **Temps de configuration** : 10 minutes
+```javascript
+// Configuration via SDK
+const salsa = new SalsaClient(apiKey);
 
-#### Clover
+await salsa.integrations.connect({
+  provider: "toast",
+  credentials: {
+    clientId: process.env.TOAST_CLIENT_ID,
+    clientSecret: process.env.TOAST_CLIENT_SECRET,
+    restaurantGuid: process.env.TOAST_RESTAURANT_GUID,
+  },
+  options: {
+    syncInterval: "5m",
+    includeLabor: true,
+    menuMapping: "auto",
+  },
+});
+```
 
-**Niveau d'intégration** : ⭐⭐⭐⭐⭐ Native
+  </Tab>
+  <Tab title="Clover">
+    <Badge color="green" shape="rounded" size="md">⭐⭐⭐⭐⭐ Native</Badge>
+    <Badge color="blue" shape="rounded" size="md">Configuration : 5 mins</Badge>
 
     **Fonctionnalités :**
     - Intégration Clover App Market
     - Synchronisation d'inventaire en temps réel
     - Gestion des commandes
     - Synchronisation des données clients
+    - Intégration des rapports
 
-    **Installation** : Disponible dans Clover App Market
+    **Installation** : Disponible dans Clover App Market. Recherchez "Salsa as a Service v2.0" dans votre tableau de bord Clover.
 
+  </Tab>
+  <Tab title="Lightspeed">
+    <Badge color="yellow" shape="rounded" size="md">⭐⭐⭐⭐ Partenaire certifié</Badge>
+    <Badge color="blue" shape="rounded" size="md">Configuration : 15 mins</Badge>
 
+    **Fonctionnalités :**
+    - Synchronisation menu et inventaire
+    - Intégration des rapports de ventes
+    - Support multi-emplacements
+    - Intégration des données clients
+
+    **Compatibilité** : Lightspeed Restaurant (anciennement Upserve)
+
+  </Tab>
+  <Tab title="TouchBistro">
+    <Badge color="yellow" shape="rounded" size="md">⭐⭐⭐⭐ Partenaire certifié</Badge>
+    <Badge color="blue" shape="rounded" size="md">Configuration : 15 mins</Badge>
+
+    **Fonctionnalités :**
+    - Synchronisation menu et inventaire
+    - Intégration commande en table
+    - Support multi-emplacements
+    - Intégration des réservations
+
+  </Tab>
+  <Tab title="Revel">
+    <Badge color="yellow" shape="rounded" size="md">⭐⭐⭐⭐ Partenaire certifié</Badge>
+    <Badge color="blue" shape="rounded" size="md">Configuration : 20 mins</Badge>
+
+    **Fonctionnalités :**
+    - Intégration de niveau entreprise
+    - Support multi-emplacements
+    - Rapports avancés
+    - Synchronisation gestion d'inventaire
+
+  </Tab>
+</Tabs>
+
+{/* ### Systèmes POS entreprise */}
+
+<Note>
+  **Bientôt disponible** : La documentation sur les systèmes POS entreprise est
+  en cours de développement et sera disponible dans une prochaine mise à jour.
+</Note>
+
+---
 
 ## Chaîne d'approvisionnement et distributeurs
 
 Automatisez la commande d'ingrédients avec intégrations directes de distributeurs :
 
-
-#### Sysco
-
-**Niveau d'intégration** : ⭐⭐⭐⭐⭐ Native
+<Tabs>
+  <Tab title="Sysco">
+    <Badge color="green" shape="rounded" size="md">⭐⭐⭐⭐⭐ Native</Badge>
 
     **Fonctionnalités :**
     - Commande automatisée basée sur prévisions IA
     - Disponibilité d'inventaire en temps réel
     - Mises à jour de tarifs et catalogue
     - Suivi de commande et notifications de livraison
+    - Réconciliation des factures
 
     **Avantages :**
     - Réduction de 40% du temps de commande
     - Quantités optimales basées sur prévisions
+    - Comparaison automatique des prix
     - Réduction de 60% des ruptures de stock
 
-#### US Foods
+```python
+    # Exemple : Commande Sysco automatisée
+    from salsa_sdk import SalsaClient
 
-**Niveau d'intégration** : ⭐⭐⭐⭐⭐ Native
+    client = SalsaClient(api_key="votre_cle")
+
+    sysco_config = client.suppliers.configure("sysco", {
+        "account_number": "123456789",
+        "delivery_window": "mar-jeu",
+        "auto_order": True,
+        "approval_threshold": 500,
+        "preferred_items": True
+    })
+```
+
+  </Tab>
+  <Tab title="US Foods">
+    <Badge color="green" shape="rounded" size="md">⭐⭐⭐⭐⭐ Native</Badge>
 
     **Fonctionnalités :**
     - Commande directe via US Foods Connect
     - Intégration du catalogue de produits
     - Tarification et disponibilité
     - Planification de livraison
+    - Facturation numérique
 
-#### Fournisseurs locaux
+    **Configuration** : Liez votre compte US Foods dans **Paramètres > Intégrations**
 
-**Niveau d'intégration** : ⭐⭐⭐ Personnalisé
+  </Tab>
+  <Tab title="Performance Food Group">
+    <Badge color="yellow" shape="rounded" size="md">⭐⭐⭐⭐ Partenaire certifié</Badge>
+
+    **Fonctionnalités :**
+    - Intégration système de commande PFG
+    - Support multi-marques
+    - Vérification d'inventaire en temps réel
+    - Historique et analytique des commandes
+
+    **Marques** : Performance Foodservice, Vistar, Roma, Reinhart
+
+  </Tab>
+  <Tab title="Gordon Food Service">
+    <Badge color="yellow" shape="rounded" size="md">⭐⭐⭐⭐ Partenaire certifié</Badge>
+
+    **Fonctionnalités :**
+    - Commande directe GFS
+    - Informations et spécifications produits
+    - Gestion des livraisons
+    - Mises à jour des prix
+
+    **Régions** : États-Unis et Canada
+
+  </Tab>
+  <Tab title="Fournisseurs locaux">
+    <Badge color="gray" shape="rounded" size="md">⭐⭐⭐ Personnalisé</Badge>
 
     **Fonctionnalités :**
     - Intégration de fournisseur personnalisée via API
@@ -121,7 +233,20 @@ Automatisez la commande d'ingrédients avec intégrations directes de distribute
     - Création de commande manuelle avec modèles
     - Import/export CSV
 
+    **Configuration** : Contactez notre équipe d'intégration pour les connexions fournisseurs personnalisées
 
+  </Tab>
+</Tabs>
+
+{/* ## Systèmes de gestion de cuisine */}
+
+<Note>
+  **Bientôt disponible** : La documentation sur les systèmes de gestion de
+  cuisine est en cours de développement et sera disponible dans une prochaine
+  mise à jour.
+</Note>
+
+---
 
 ## Systèmes d'entreprise
 
@@ -129,10 +254,9 @@ Automatisez la commande d'ingrédients avec intégrations directes de distribute
 
 Connectez avec les systèmes de planification des ressources d'entreprise :
 
-
-#### SAP
-
-**Produits SAP supportés :**
+<Tabs>
+  <Tab title="SAP">
+    **Produits SAP supportés :**
     - SAP Business One
     - SAP S/4HANA
     - SAP ECC
@@ -143,11 +267,18 @@ Connectez avec les systèmes de planification des ressources d'entreprise :
     - Contrôle de gestion (CO)
     - Planification de production (PP)
 
-    **Configuration** : Les clients entreprise reçoivent un support d'intégration SAP dédié
+    **Flux de données :**
 
-#### Oracle
+```
+    Salsa → SAP : Bons de commande, mouvements d'inventaire, données de production
+    SAP → Salsa : Données de référence, centres de coûts, comptes GL, fournisseurs
+```
 
-**Produits Oracle supportés :**
+    **Configuration** : Les clients entreprise reçoivent un support d'intégration SAP dédié.
+
+  </Tab>
+  <Tab title="Oracle">
+    **Produits Oracle supportés :**
     - Oracle E-Business Suite
     - Oracle Cloud ERP
     - Oracle NetSuite
@@ -156,49 +287,59 @@ Connectez avec les systèmes de planification des ressources d'entreprise :
     - Gestion de la chaîne d'approvisionnement
     - Gestion financière
     - Approvisionnement
+    - Gestion d'inventaire
 
-#### Microsoft Dynamics
+    **API** : REST et SOAP APIs supportées
 
-**Produits Dynamics supportés :**
+  </Tab>
+  <Tab title="Microsoft Dynamics">
+    **Produits Dynamics supportés :**
     - Dynamics 365 Finance
     - Dynamics 365 Supply Chain Management
     - Dynamics 365 Business Central
 
     **Intégration** : Intégration native Azure AD avec support SSO
 
+  </Tab>
+</Tabs>
 
+{/* ### Logiciels de comptabilité */}
 
-### Logiciels de comptabilité
+<Note>
+  **Bientôt disponible** : La documentation sur les logiciels de comptabilité
+  est en cours de développement et sera disponible dans une prochaine mise à
+  jour.
+</Note>
 
-
-
+---
 
 ## Communication et notifications
 
 ### Communication d'équipe
 
-
-#### Slack
-
-**Fonctionnalités :**
+<Tabs>
+  <Tab title="Slack">
+    **Fonctionnalités :**
     - Alertes et notifications en temps réel
     - Mises à jour de production
     - Alertes de qualité
     - Avertissements d'inventaire
+    - Routage de canal personnalisé
 
     **Commandes de bot :**
-    ```
+
+```
     /salsa forecast          # Voir les prévisions du jour
     /salsa inventory [item]  # Vérifier les niveaux de stock
     /salsa production        # État de production actuel
     /salsa quality           # Scores de qualité récents
-    ```
+```
 
     **Configuration** : Ajoutez le bot Salsa depuis Slack App Directory
 
-#### Microsoft Teams
-
-**Fonctionnalités :**
+  </Tab>
+  <Tab title="Microsoft Teams">
+    **Fonctionnalités :**
     - Intégration de canal Teams
     - Cartes adaptatives pour notifications enrichies
     - Commandes et interactions de bot
@@ -206,42 +347,186 @@ Connectez avec les systèmes de planification des ressources d'entreprise :
 
     **Intégration** : Disponible dans Microsoft Teams App Store
 
+  </Tab>
+  <Tab title="SMS et voix">
+    **Fournisseurs :**
+    <Badge color="gray" shape="rounded" size="md">Twilio</Badge>
+    <Badge color="gray" shape="rounded" size="md">AWS SNS</Badge>
+    <Badge color="gray" shape="rounded" size="md">Passerelle SMS personnalisée</Badge>
 
+    **Cas d'utilisation :**
+    - Alertes critiques (violations de température)
+    - Notifications de livraison
+    - Demandes d'approbation
+    - Notifications d'urgence
+
+    **Configuration** : Configurez dans **Paramètres > Notifications > SMS**
+
+  </Tab>
+</Tabs>
+
+---
+
+## Intégration IoT et matériel
+
+{/* ## Partenaires matériel certifiés */}
+
+<Note>
+  **Bientôt disponible** : La documentation sur les partenaires matériel
+  certifiés est en cours de développement et sera disponible dans une prochaine
+  mise à jour.
+</Note>
+
+---
+
+## Intelligence d'affaires et analytique
+
+<Tabs>
+  <Tab title="Tableau">
+    <Badge color="green" shape="rounded" size="md">Connecteur natif</Badge>
+
+    **Fonctionnalités :**
+    - Connexion directe à l'entrepôt de données Salsa
+    - Modèles de tableau de bord pré-construits
+    - Actualisation des données en temps réel
+    - Métriques et dimensions personnalisées
+
+    **Données disponibles :**
+    - Métriques de production
+    - Analytique d'inventaire
+    - Tendances de qualité
+    - Analyse des coûts
+    - Précision des prévisions
+
+  </Tab>
+  <Tab title="Power BI">
+    <Badge color="green" shape="rounded" size="md">Connecteur natif</Badge>
+
+    **Fonctionnalités :**
+    - Support Power BI Desktop et Service
+    - Actualisation planifiée
+    - Sécurité au niveau des lignes
+    - Visuels personnalisés
+
+    **Installation** : Recherchez "Salsa as a Service" dans les connecteurs Power BI
+
+  </Tab>
+  <Tab title="Looker">
+    <Badge color="blue" shape="rounded" size="md">Modèles LookML</Badge>
+
+    **Fonctionnalités :**
+    - Modèles LookML pré-construits
+    - Analytique intégrée
+    - Explorations personnalisées
+    - Intégration API
+
+    **Contact** : Les clients entreprise reçoivent un support LookML
+
+  </Tab>
+</Tabs>
+
+---
 
 ## Intégrations personnalisées
 
 ### Méthodes d'intégration
 
+<CardGroup cols={3}>
+  <Card title="API REST" icon="code" href="/fr/v2/reference-api">
+    Endpoints REST traditionnels pour large compatibilité.
+  </Card>
+  <Card
+    title="API GraphQL"
+    icon="brackets-curly"
+    href="/fr/v2/reference-api#graphql"
+  >
+    Requêtes flexibles et abonnements en temps réel.
+  </Card>
+  <Card title="Webhooks" icon="webhook" href="/fr/v2/reference-api#webhooks">
+    Notifications d'événements en temps réel vers vos systèmes.
+  </Card>
+</CardGroup>
 
-**[API REST](/fr/v2/reference-api)**  
-Endpoints REST traditionnels pour large compatibilité.
+### Développement d'intégration
 
-**[API GraphQL](/fr/v2/reference-api#graphql)**  
-Requêtes flexibles et abonnements en temps réel.
+Construisez des intégrations personnalisées avec nos outils :
 
-**[Webhooks](/fr/v2/reference-api#webhooks)**  
-Notifications d'événements en temps réel vers vos systèmes.
+<Steps>
+  <Step title="Consulter la documentation">
+    Explorez notre [Référence API](/fr/v2/reference-api) et guides développeur.
+  </Step>
+  <Step title="Obtenir les identifiants API">
+    Générez des clés API depuis votre tableau de bord **Paramètres > Développeur**.
+  </Step>
+  <Step title="Utiliser les SDKs">
+    Exploitez nos SDKs officiels pour un développement plus rapide :
 
+    <Badge color="gray" shape="rounded" size="md">JavaScript / Node.js</Badge>
+    <Badge color="gray" shape="rounded" size="md">Python</Badge>
+    <Badge color="gray" shape="rounded" size="md">PHP</Badge>
+    <Badge color="gray" shape="rounded" size="md">Ruby</Badge>
+    <Badge color="gray" shape="rounded" size="md">Go</Badge>
+    <Badge color="gray" shape="rounded" size="md">Java</Badge>
+    <Badge color="gray" shape="rounded" size="md">C#</Badge>
+    <Badge color="gray" shape="rounded" size="md">Swift</Badge>
 
+  </Step>
+  <Step title="Tester dans le bac à sable">
+    Utilisez notre environnement sandbox pour des tests sécurisés avant la mise en production.
+  </Step>
+  <Step title="Déployer en production">
+    Passez en production en toute confiance après des tests approfondis.
+  </Step>
+</Steps>
+
+---
 
 ## Support d'intégration
 
-
-**[Documentation](/fr/v2/reference-api)**  
-Documentation API complète et guides d'intégration.
-
-**[Portail développeur](https://developers.salsaasaservice.com)**  
-Explorateur API interactif et outils de test.
-
-
-
-### Canaux de support
+<CardGroup cols={2}>
+  <Card title="Documentation" icon="book" href="/fr/v2/reference-api">
+    Documentation API complète et guides d'intégration.
+  </Card>
+  <Card
+    title="Portail développeur"
+    icon="code"
+    href="https://developers.salsaasaservice.com"
+  >
+    Explorateur API interactif et outils de test.
+  </Card>
+  <Card title="Discord développeur" icon="discord" href="#">
+    Rejoignez notre communauté pour aide et discussions sur les intégrations.
+  </Card>
+  <Card title="Guides vidéo" icon="video" href="#">
+    Guides d'intégration étape par étape pour chaque plateforme.
+  </Card>
+</CardGroup>
 
 - 📧 **E-mail** : integrations@salsaasaservice.com
-- 💬 **Discord développeur** : Rejoignez notre communauté
 - 📚 **Base de connaissances** : Parcourez les tutoriels d'intégration
-- 🎥 **Guides vidéo** : Guides d'intégration étape par étape
 
-> **Note:**
-**Support d'intégration entreprise** : Les clients entreprise reçoivent des ingénieurs d'intégration dédiés et un support prioritaire.
+<Note>
+  **Support d'intégration entreprise** : Les clients entreprise reçoivent des
+  ingénieurs d'intégration dédiés et un support prioritaire.
+</Note>
 
+---
+
+## Demander de nouvelles intégrations
+
+Vous ne voyez pas votre système listé ? Nous ajoutons constamment de nouvelles intégrations.
+
+- **Soumettre une demande** : Soumettez une demande d'intégration via votre tableau de bord ou par e-mail.
+- **Voter pour les demandes** : Votez pour les intégrations demandées pour nous aider à prioriser.
+- **Suivre la progression** : Suivez la progression du développement des intégrations demandées.
+- **Tests bêta** : Rejoignez les programmes bêta pour tester les nouvelles intégrations en avant-première.
+
+<Note>**Intégrations les plus demandées (bientôt disponibles) :</Note>
+
+- DoorDash Drive
+- Uber Eats Manager
+- Grubhub Direct
+- Yelp Guest Manager
+- OpenTable
+- 7shifts scheduling
+- HotSchedules
