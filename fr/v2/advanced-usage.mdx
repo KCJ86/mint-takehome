@@ -3,40 +3,47 @@ title: "Utilisation avancée"
 description: "Maîtrisez les prévisions IA, surveillance IoT, automatisation et fonctionnalités d'entreprise dans v2.0"
 ---
 
-# Guide d'utilisation avancée
-
-Libérez tout le potentiel de Salsa as a Service v2.0 avec les fonctionnalités alimentées par IA, intégration IoT, automatisation avancée et capacités d'entreprise.
-
 ## Prévision de demande alimentée par IA
 
-### Comprendre le moteur de prévision
-
-Le moteur de prévision IA de v2.0 utilise plusieurs modèles d'apprentissage automatique pour prédire la demande de salsa avec une précision de pointe :
-
-
-
+Le moteur de prévision IA de v2.0 utilise plusieurs modèles d'apprentissage automatique pour prédire la demande de salsa avec une précision de pointe.
 
 ### Configuration de prévisions avancées
 
-
-1. **Sélectionner l'horizon de prévision**
-   Choisissez votre fenêtre de prévision :
+<Steps>
+  <Step title="Sélectionner l'horizon de prévision">
+    Choisissez votre fenêtre de prévision selon vos besoins opérationnels :
     - **Court terme (7 jours)** : Planification de production quotidienne
     - **Moyen terme (14 jours)** : Commande d'ingrédients et planification du personnel
-    - **Long terme (30+ jours)** : Planification stratégique
-
-2. **Configurer les sources de données**
-   Connectez des sources supplémentaires pour améliorer la précision :
-    - Ventes POS
-    - Réservations
-    - API météo
-    - Événements locaux
-    - Trafic piétonnier
-
-3. **Définir les seuils d'alerte**
-   Configurez les alertes pour les changements de prévision significatifs.
-
-
+    - **Long terme (30+ jours)** : Planification stratégique et préparation saisonnière
+  </Step>
+  <Step title="Configurer les sources de données">
+    Connectez des sources supplémentaires pour améliorer la précision :
+```javascript
+    const forecastConfig = {
+      data_sources: {
+        pos_sales: true,
+        reservations: true,
+        weather_api: "openweathermap",
+        events: ["eventbrite", "local_calendar"],
+        foot_traffic: "sensor_data",
+        social_media: ["yelp", "google_reviews"],
+      },
+      model_parameters: {
+        confidence_level: 0.95,
+        seasonality: "auto_detect",
+        trend_sensitivity: "medium",
+        anomaly_detection: true,
+      },
+    };
+```
+  </Step>
+  <Step title="Définir les seuils d'alerte">
+    Configurez les alertes pour les changements de prévision significatifs ou les anomalies.
+  </Step>
+  <Step title="Activer les actions automatiques">
+    Laissez l'IA ajuster automatiquement les horaires de production basés sur les prévisions.
+  </Step>
+</Steps>
 
 ### Interpréter les résultats de prévision
 
@@ -57,75 +64,181 @@ L'IA fournit des données de prévision riches avec intervalles de confiance :
     "historical_trend": "+15%",
     "day_of_week": "Vendredi (+20%)",
     "weather": "Ensoleillé, 22°C (+5%)",
-    "local_events": ["Concert à 0,8km (+10%)"]
+    "local_events": ["Concert à 0,8km (+10%)"],
+    "seasonality": "Saison hivernale (-5%)"
+  },
+  "recommendation": {
+    "action": "increase_production",
+    "suggested_batches": 3,
+    "timing": "Démarrer la production avant 9h00"
   }
 }
 ```
 
+### Suivi de la précision des prévisions
+
+Surveillez et améliorez la précision de vos prévisions au fil du temps :
+
+<CardGroup cols={3}>
+  <Card title="Métriques de précision" icon="bullseye">
+    MAPE, RMSE, suivi des biais de prévision et comparaisons des intervalles de
+    confiance entre plages réelles et prédites.
+  </Card>
+  <Card title="Performance des modèles" icon="chart-line">
+    Comparez la précision court vs long terme, performance par recette,
+    reconnaissance de modèles saisonniers et prédiction d'impact des événements.
+  </Card>
+  <Card title="Apprentissage continu" icon="brain">
+    Les modèles se réentraînent hebdomadairement, ajustent les poids selon la
+    précision, s'adaptent aux nouveaux modèles et testent les améliorations
+    automatiquement.
+  </Card>
+</CardGroup>
+
+---
+
 ## Intégration de capteurs IoT
 
-### Types et capacités de capteurs
+{/* ### Types et capacités de capteurs */}
 
-
-
+<Note>
+  **Bientôt disponible** : La documentation sur les types et capacités de
+  capteurs est en cours de développement et sera disponible dans une prochaine
+  mise à jour.
+</Note>
 
 ### Tableau de bord de surveillance en temps réel
 
 Accédez aux données complètes des capteurs en temps réel :
 
-```python
-# Exemple : Interroger les données de capteurs via API
-from salsa_sdk import SalsaClient
+<Note>
+  **Fonctionnalités du tableau de bord** : Flux de capteurs en direct, tendances
+  historiques, alertes d'anomalies, avertissements de maintenance prédictive et
+  rapports automatisés.
+</Note>
+```python # Exemple : Interroger les données de capteurs via API from salsa_sdk
+import SalsaClient
 
 client = SalsaClient(api_key="votre_cle_api")
 
 # Obtenir les lectures en temps réel
+
 sensors = client.iot.get_sensors(location="cuisine_1")
 for sensor in sensors:
-    reading = sensor.get_latest_reading()
-    print(f"{sensor.name}: {reading.value} {reading.unit}")
+reading = sensor.get_latest_reading()
+print(f"{sensor.name}: {reading.value} {reading.unit}")
 
     if reading.is_anomaly():
         print(f"⚠️  Alerte: {reading.anomaly_details}")
-```
+
+# Interroger les données historiques
+
+history = client.iot.query_history(
+sensor_id="temp_sensor_001",
+start_date="2024-01-01",
+end_date="2024-01-31",
+aggregation="hourly"
+)
+
+````
 
 ### Maintenance prédictive
 
-L'IA analyse les modèles de capteurs pour prédire les défaillances d'équipement avant qu'elles ne se produisent :
+L'IA analyse les modèles de capteurs pour prédire les défaillances avant qu'elles ne se produisent :
 
-- Prédiction de défaillance 3-14 jours à l'avance
-- Précision de 85%
-- Alertes automatiques avec actions recommandées
+<Steps>
+  <Step title="Profilage de l'équipement">
+    Le système apprend les paramètres de fonctionnement normaux pour chaque équipement.
+  </Step>
+  <Step title="Détection d'anomalies">
+    Les modèles ML détectent les changements subtils indiquant des problèmes potentiels :
+    - Fluctuations de température
+    - Modèles de vibration inhabituels
+    - Dégradation des performances
+    - Changements de consommation électrique
+  </Step>
+  <Step title="Prédiction de défaillance">
+    Prédit les défaillances d'équipement 3-14 jours à l'avance avec une précision de 85%.
+  </Step>
+  <Step title="Alertes automatisées">
+    Notifie l'équipe de maintenance avec des actions recommandées spécifiques.
+  </Step>
+</Steps>
+
+---
 
 ## Automatisation avancée
 
 ### Réapprovisionnement automatisé
 
 Laissez l'IA gérer automatiquement votre inventaire d'ingrédients :
-
 ```javascript
 const autoOrderConfig = {
   enabled: true,
   suppliers: ["sysco", "us_foods"],
   rules: {
-    reorder_trigger: "forecast_based",
-    lead_time_buffer: 2,  // jours
+    reorder_trigger: "forecast_based", // ou "threshold_based"
+    lead_time_buffer: 2, // jours
     safety_stock_level: 1.5,
-    max_order_frequency: "daily"
+    max_order_frequency: "daily",
+    budget_constraints: {
+      monthly_max: 50000,
+      per_order_max: 5000,
+    },
   },
   approval_workflow: {
     auto_approve_under: 1000,
-    require_approval_over: 1000
-  }
+    require_approval_over: 1000,
+    approvers: ["manager@restaurant.com"],
+  },
 };
-```
+````
 
-### Planification de production intelligente
+<CardGroup cols={2}>
+  <Card title="Logique de commande" icon="brain">
+    L'IA prend en compte les prévisions de demande, niveaux de stock en temps
+    réel, délais fournisseurs, optimisation des coûts, disponibilité saisonnière
+    et scores de qualité des fournisseurs.
+  </Card>
+  <Card title="Surveillance des commandes" icon="truck">
+    Suivez les confirmations de commandes, statut de livraison, vérification
+    qualité à la réception, mises à jour automatiques de l'inventaire et alertes
+    budgétaires.
+  </Card>
+</CardGroup>
 
-L'IA optimise les horaires de production pour une efficacité maximale :
+{/* ### Planification de production intelligente */}
 
+<Note>
+  **Bientôt disponible** : La planification de production intelligente est en
+  cours de développement et sera disponible dans une prochaine mise à jour.
+</Note>
 
+### Automatisation des flux de travail
 
+Créez des flux de travail d'automatisation personnalisés avec notre constructeur visuel :
+
+<Steps>
+  <Step title="Choisir le déclencheur">
+    Sélectionnez ce qui initie le flux de travail : - Basé sur le temps
+    (planification) - Basé sur les événements (stock faible, alerte qualité) -
+    Basé sur les prévisions (pic de demande prévu) - Déclencheur manuel
+  </Step>
+  <Step title="Définir les conditions">
+    Définissez les conditions à remplir : - Niveaux d'inventaire - Disponibilité
+    du personnel - État de l'équipement - Contraintes budgétaires
+  </Step>
+  <Step title="Configurer les actions">
+    Choisissez les actions automatisées : - Créer des lots de production -
+    Envoyer des notifications - Commander des ingrédients - Mettre à jour les
+    horaires - Générer des rapports
+  </Step>
+  <Step title="Définir les approbations">
+    Optionnel : exiger l'approbation humaine avant d'exécuter certaines actions.
+  </Step>
+</Steps>
+
+---
 
 ## Fonctionnalités d'entreprise
 
@@ -133,29 +246,26 @@ L'IA optimise les horaires de production pour une efficacité maximale :
 
 Gérez les chaînes de restaurants de toute taille avec contrôle centralisé :
 
-
-#### Tableau de bord centralisé
-
-- Voir tous les emplacements sur un seul tableau de bord
-    - Comparer les performances entre emplacements
-    - Identifier les meilleurs et moins performants
-    - Partager les meilleures pratiques
-
-#### Groupes d'emplacements
-
-- Organiser les emplacements en régions ou marques
-    - Appliquer des politiques au niveau du groupe
-    - Exécuter des rapports régionaux
-    - Gérer des opérations en masse
-
-#### Distribution de recettes
-
-- Maintenir la cohérence des recettes
-    - Pousser les mises à jour vers des emplacements sélectionnés
-    - Permettre des modifications spécifiques par emplacement
-    - Suivre l'historique des versions
-
-
+<CardGroup cols={2}>
+  <Card title="Tableau de bord centralisé" icon="building">
+    Visualisez tous les emplacements en un seul endroit, comparez les
+    performances, identifiez les meilleurs et moins performants et partagez les
+    meilleures pratiques.
+  </Card>
+  <Card title="Groupes d'emplacements" icon="layer-group">
+    Organisez les emplacements en régions ou marques, appliquez des politiques
+    de groupe, exécutez des rapports régionaux et gérez des opérations en masse.
+  </Card>
+  <Card title="Distribution de recettes" icon="book">
+    Maintenez la cohérence des recettes, poussez les mises à jour vers des sites
+    sélectionnés, permettez des modifications spécifiques par emplacement et
+    suivez l'historique des versions.
+  </Card>
+  <Card title="Transferts d'inventaire" icon="arrow-right-arrow-left">
+    Transférez l'inventaire entre emplacements, optimisez la distribution des
+    stocks, réduisez le gaspillage et suivez les coûts de transfert.
+  </Card>
+</CardGroup>
 
 ### RBAC avancé (contrôle d'accès basé sur les rôles)
 
@@ -168,34 +278,193 @@ permissions:
   locations:
     access_level: "region"
     regions: ["sud-ouest", "cote_ouest"]
-
   quality_control:
     view: true
     create: true
     approve: true
     delete: false
-
   production:
     view: true
     create: false
     manage: false
+  reports:
+    view: true
+    export: true
+    scheduled_reports: true
+  data_access:
+    pii: false
+    financial: false
+    operational: true
+  user_management:
+    invite_users: false
+    manage_roles: false
 ```
 
-### Conformité et audit
+### Conformité, API et plateforme d'intégration
 
+{/* ### Conformité et audit */}
 
+<Note>
+  **Bientôt disponible** : La documentation sur la conformité et l'audit est en
+  cours de développement et sera disponible dans une prochaine mise à jour.
+</Note>
 
+Construisez des solutions personnalisées avec notre API d'entreprise :
+
+<Tabs>
+  <Tab title="API GraphQL">
+    API moderne et flexible avec abonnements en temps réel :
+```graphql
+    query GetProductionForecast {
+      forecast(location: "loc_123", days: 7) {
+        date
+        recipes {
+          id
+          name
+          predictedDemand {
+            quantity
+            unit
+            confidence
+          }
+        }
+      }
+    }
+
+    subscription OnQualityAlert {
+      qualityAlert(location: "loc_123") {
+        id
+        severity
+        sensorId
+        message
+        timestamp
+      }
+    }
+
+````
+  </Tab>
+  <Tab title="API REST">
+    Endpoints REST traditionnels pour la compatibilité :
+```bash
+    # Obtenir les prévisions
+    curl -X GET https://api.salsaasaservice.com/v2/forecast \
+      -H "Authorization: Bearer VOTRE_CLE_API" \
+      -H "Content-Type: application/json"
+
+    # Créer un lot de production
+    curl -X POST https://api.salsaasaservice.com/v2/production/batches \
+      -H "Authorization: Bearer VOTRE_CLE_API" \
+      -d '{"recipe_id": "rec_456", "quantity": 5.0}'
+````
+
+  </Tab>
+  <Tab title="Webhooks v2">
+    Système de webhooks amélioré avec livraison garantie, filtrage d'événements, transformation de charge utile, vérification de signature et suivi du statut de livraison :
+```javascript
+    {
+      "event": "quality.alert.created",
+      "timestamp": "2024-01-15T10:30:00Z",
+      "data": {
+        "alert_id": "alert_789",
+        "location_id": "loc_123",
+        "severity": "high",
+        "message": "Température hors plage",
+        "sensor_id": "temp_001",
+        "reading": {
+          "value": 45.3,
+          "threshold": 40.0
+        }
+      },
+      "signature": "sha256=abc123..."
+    }
+```
+  </Tab>
+</Tabs>
+
+---
+
+## Optimisation des performances
+
+### Optimisation des requêtes
+
+Optimisez les requêtes API pour les opérations à grande échelle :
+
+```graphql
+# Utiliser la mise en cache au niveau des champs
+query GetLocations @cache(ttl: 300) {
+  locations {
+    id
+    name
+    currentInventory {
+      ingredientId
+      quantity
+    }
+  }
+}
+
+# Utiliser la pagination pour les grands ensembles de données
+query GetProductionHistory($first: Int = 50, $after: String) {
+  productionBatches(first: $first, after: $after) {
+    edges {
+      node {
+        id
+        recipeId
+        quantity
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}
+```
+
+### Stratégies de mise en cache
+
+- **Mise en cache CDN** : Ressources statiques mises en cache aux emplacements périphériques pour un accès mondial rapide.
+- **Mise en cache des réponses API** : Données fréquemment consultées mises en cache avec TTL configurable.
+- **Mise en cache côté client** : Utilisez la mise en cache intégrée de notre SDK pour les requêtes répétées.
+- **Invalidation du cache** : Invalidation automatique du cache lors des mises à jour de données.
+
+---
+
+{/* ## Meilleures pratiques */}
+
+<Note>
+  **Bientôt disponible** : Le guide des meilleures pratiques est en cours de
+  développement et sera disponible dans une prochaine mise à jour.
+</Note>
+
+---
 
 ## Besoin d'aide ?
 
 Les fonctionnalités avancées nécessitent un support avancé :
 
-- 📚 **Documentation entreprise** : Guides complets pour fonctionnalités d'entreprise
-- 👨‍💼 **Gestionnaire de compte dédié** : Contact personnel pour clients entreprise
-- 🛠️ **Services professionnels** : Développement et intégration personnalisés
-- 🎓 **Programmes de formation** : Formation sur site et virtuelle
-- 📞 **Support 24/7** : Support entreprise disponible 24h/24
+<CardGroup cols={2}>
+  <Card title="Documentation entreprise" icon="book">
+    Guides complets couvrant toutes les fonctionnalités avancées et d'entreprise
+    en détail.
+  </Card>
+  <Card title="Gestionnaire de compte dédié" icon="user-tie">
+    Contact personnel pour les clients entreprise pour guidance stratégique et
+    support.
+  </Card>
+  <Card title="Services professionnels" icon="screwdriver-wrench">
+    Développement et intégration personnalisés adaptés à votre opération.
+  </Card>
+  <Card title="Programmes de formation" icon="graduation-cap">
+    Sessions de formation sur site et virtuelles pour votre équipe sur toutes
+    les fonctionnalités v2.0.
+  </Card>
+  <Card title="Support 24/7" icon="headset">
+    Support entreprise disponible 24h/24 pour les problèmes critiques.
+  </Card>
+</CardGroup>
 
-> **Note:**
-**Support entreprise** : Toutes les fonctionnalités avancées incluent un support prioritaire avec SLA de réponse d'1 heure pour les problèmes critiques.
-
+<Note>
+  **Support entreprise** : Toutes les fonctionnalités avancées incluent un
+  support prioritaire avec un SLA de réponse d'1 heure pour les problèmes
+  critiques.
+</Note>
