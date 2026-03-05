@@ -145,6 +145,7 @@ Now that you've mastered the navigation structure, it's time to enhance the cont
 
 ---
 
+
 ## Resources
 
 - [Mintlify Documentation](https://mintlify.com/docs) - Your primary resource; everything you need to succeed will be within these docs
