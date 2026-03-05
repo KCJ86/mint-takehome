@@ -3,10 +3,6 @@ title: "Analytics & Reporting - v2.0"
 description: "AI-powered insights with predictive analytics and real-time IoT data visualization"
 ---
 
-# Analytics & Reporting - v2.0
-
-Get AI-powered insights with predictive analytics, real-time IoT data, and advanced visualization.
-
 ## Overview
 
 Transform your salsa data into actionable insights with AI-driven predictions, real-time IoT sensor data, and advanced machine learning analytics.
@@ -33,7 +29,7 @@ const alert = await salsa.ai.analytics.createSmartAlert({
   type: "anomaly_detection",
   metric: "production_efficiency",
   sensitivity: "medium",
-  actions: ["notify_manager", "create_ticket"]
+  actions: ["notify_manager", "create_ticket"],
 });
 ```
 
@@ -98,25 +94,22 @@ AI identifies cost-saving opportunities:
 - Production schedule optimization
 - Waste reduction strategies
 
+---
+
 ## Financial Analytics
 
-### AI-Enhanced Cost Analysis
+<CardGroup cols={2}>
+  <Card title="AI-Enhanced Cost Analysis" icon="chart-line">
+    Predictive cost trends, anomaly detection in expenses, supplier price
+    optimization, and automated budget alerts.
+  </Card>
+  <Card title="Profitability Optimization" icon="arrow-trend-up">
+    Recipe profitability predictions, price optimization recommendations, cost
+    reduction opportunities, and margin improvement strategies.
+  </Card>
+</CardGroup>
 
-Intelligent cost tracking:
-
-- Predictive cost trends
-- Anomaly detection in expenses
-- Supplier price optimization
-- Automated budget alerts
-
-### Profitability Optimization
-
-AI-driven profitability insights:
-
-- Recipe profitability predictions
-- Price optimization recommendations
-- Cost reduction opportunities
-- Margin improvement strategies
+---
 
 ## Operational Intelligence
 
@@ -138,27 +131,26 @@ Real-time operational monitoring:
 - Environmental condition analysis
 - Predictive maintenance scheduling
 
+---
+
 ## Custom Reports
 
 ### AI Report Builder
 
-Intelligent report generation:
-
-
-1. **Ask in Natural Language**
-   Describe the report you want in plain English.
-
-2. **AI Generates Report**
-   AI selects optimal metrics, visualizations, and filters.
-
-3. **Review & Refine**
-   Adjust AI-generated report to your preferences.
-
-4. **Automate & Share**
-   Schedule delivery with AI-generated insights included.
-
-
-
+<Steps>
+  <Step title="Ask in Natural Language">
+    Describe the report you want in plain English.
+  </Step>
+  <Step title="AI Generates Report">
+    AI selects optimal metrics, visualizations, and filters automatically.
+  </Step>
+  <Step title="Review & Refine">
+    Adjust the AI-generated report to match your preferences.
+  </Step>
+  <Step title="Automate & Share">
+    Schedule delivery with AI-generated insights included.
+  </Step>
+</Steps>
 ### AI-Generated Insights
 
 Every report includes AI insights:
@@ -167,6 +159,8 @@ Every report includes AI insights:
 - Trend analysis and predictions
 - Actionable recommendations
 - Performance comparisons
+
+---
 
 ## Advanced Visualizations
 
@@ -188,14 +182,41 @@ Visualize future predictions:
 - Quality score predictions
 - Inventory level forecasts
 
+---
+
 ## Data Export
 
 Enhanced export capabilities:
 
-- **CSV/Excel**: With AI insights included
-- **PDF Reports**: With AI-generated summaries
-- **JSON/GraphQL**: For custom integrations
-- **Power BI/Tableau**: Native connector integration
+<CardGroup cols={2}>
+  <Card title="CSV / Excel" icon="file-excel">
+    <Badge color="gray" shape="rounded" size="sm">
+      Spreadsheet
+    </Badge>
+    Export your data with AI insights and annotations included for offline
+    analysis.
+  </Card>
+  <Card title="PDF Reports" icon="file-pdf">
+    <Badge color="gray" shape="rounded" size="sm">
+      Document
+    </Badge>
+    Polished reports with AI-generated summaries ready to share with
+    stakeholders.
+  </Card>
+  <Card title="JSON / GraphQL" icon="code">
+    <Badge color="gray" shape="rounded" size="sm">
+      Developer
+    </Badge>
+    Raw data access for custom integrations and third-party applications.
+  </Card>
+  <Card title="Power BI / Tableau" icon="chart-bar">
+    <Badge color="gray" shape="rounded" size="sm">
+      BI Tools
+    </Badge>
+    Native connector integration for seamless business intelligence workflows.
+  </Card>
+</CardGroup>
+---
 
 ## AI Recommendations
 
@@ -208,9 +229,11 @@ Receive daily AI-generated insights:
 - Performance highlights
 - Actionable recommendations
 
-> **Note:**
-**New in v2.0**: AI analyzes all your data overnight and delivers a personalized daily briefing with the most important insights and recommended actions.
-
+<Note>
+  **New in v2.0**: AI analyzes all your data overnight and delivers a
+  personalized daily briefing with the most important insights and recommended
+  actions.
+</Note>
 
 ### Continuous Learning
 
