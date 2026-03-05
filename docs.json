@@ -73,7 +73,10 @@
                   },
                   {
                     "group": "Deliverables",
-                    "pages": ["deliverables/navigation-decision-T1"]
+                    "pages": [
+                      "deliverables/navigation-decision-T1",
+                      "deliverables/component-decisions"
+                    ]
                   }
                 ]
               },

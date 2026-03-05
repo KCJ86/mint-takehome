@@ -1,0 +1,112 @@
+---
+title: "Component Design Decisions"
+description: "How I chose what components for what occasions"
+icon: "brain"
+---
+
+### Index Page
+
+On the index page, I felt the majority of it was best served by the Card component, which makes for a clean and intuitive way to display what's new in the version alongside icons and descriptions. Throughout the project there were also deprecated `<Note>` and `<Warning>` blockquotes that I replaced with their native Mintlify equivalents.
+
+Some sections, like Key Improvements, already had structured vanilla markdown that effectively conveyed information on its own. So I left those as it was rather than forcing components where they weren't needed.
+
+The `<AccordionGroup>` component was used for Core Features to let users choose what they want to explore via a dropdown, keeping the section clean without hiding important content entirely.
+
+The Trusted by Industry Leaders section was another strong use case for Cards, organizing each quote with the attribution at the bottom to really highlight customer satisfaction in a structured, readable way.
+
+---
+
+### Getting Started
+
+The Getting Started page called for the `<Steps>` component right away for the Quick Setup Wizard, given its ability to simplify a sequence of actions and guide the user through the process in a clear, linear way.
+
+For the more advanced account setup section, I chose to keep it vanilla! Presenting the information as a single readable block rather than a sequential guide. Despite covering similar ground, the content didn't benefit from being broken into steps since it wasn't meant to be followed procedurally. I took the same approach for AI Assisted Profile Configuration: I considered `<Tabs>` but felt the information was already well-presented and users needed access to all of it at once rather than having to choose what to view.
+
+The Advanced Integration Setup was where I combined `<Tabs>` and `<Steps>` together. Since the setup process differs across Square, Toast, Clover, and Enterprise, there was no reason for a Toast user to sift through Square's steps — the tab lets them jump directly to what's relevant, then follow the steps for their specific platform.
+
+`<Badge>` components were used for the Supported Distributors section since each entry is only one or two words. The badges bring a pop of color and draw the right amount of attention to what is otherwise a simple list.
+
+Finally, the Migration section also uses the `<Tabs>` and `<Steps>` combination, giving users the choice between Automatic and Manual migration, then walking them through the appropriate steps once they've made their selection.
+
+---
+
+### Changelog
+
+The Changelog was a lot of fun to work on. The core approach was a `<Tabs>` and `<AccordionGroup>` combination applied consistently across every version entry, keeping New Features, Improvements, and Bug Fixes as uniform headers throughout. This means that when you click the Bug Fixes tab on one version, you immediately know where to find it on every other version. The consistency makes scanning the changelog much faster and more intuitive.
+
+For the major v2.0 release, I felt it deserved more than the standard treatment. Since it was a significant milestone, I opened it with a `<CardGroup>` overview to celebrate the scope of what shipped, followed by the full `<Tabs>` and `<AccordionGroup>` breakdown for the detailed feature information, and closed with the migration `<Tabs>` so users could choose between Automatic and Manual paths.
+
+Everything below v2.0 was intentionally left in vanilla markdown. This was a deliberate choice... keeping the older v1.x entries simple creates a visual contrast that reinforces the narrative: a lean, straightforward v1 MVP gradually building toward the grand, fully-featured v2.0 release.
+
+---
+
+### Inventory
+
+The Inventory Management page felt scattered in its original form, so the priority here was bringing structure and visual clarity to the content. Cards were the right tool for that, used across the Key Features, Stock Management, AI Insights, and Advanced Reporting sections to group related information and draw attention to what each feature actually does.
+The Getting Started section at the bottom was a natural fit for `<Steps>` since it's a straightforward sequential process that users need to follow in order.
+
+---
+
+### Quality
+
+The Quality Control page was intentionally card-heavy. The reasoning was that this page tells a story, from prediction to detection to maintenance to compliance, and icons are a powerful way to convey that narrative for users who are scanning rather than reading. A icon communicates the story of a section before a single word is read.
+
+For the IoT Automated Testing section specifically, I combined `<Badge>` components inside the cards to layer two levels of visual communication: the icon sets the context and the badge adds a short, punchy label that reinforces it. The pop of color from the badges also helps break up what would otherwise be a dense section of technical content.
+
+---
+
+### Analytics & Reporting
+
+Analytics was one of the more hands off pages by design. In my experience with documentation, people navigating an analytics section are typically power users who want information immediately and have little patience for elaborate UI. They are there for the data, not the presentation. With that in mind, the page takes a restrained approach, leaning on plain prose and bullet lists for the majority of the content, with a `<Steps>` component for the AI Report Builder and `<CardGroup>` used sparingly for the Financial Analytics and Data Export sections where visual separation genuinely adds value.
+
+---
+
+### Advanced Usage
+
+Advanced Usage presented an interesting challenge in the form of several sections with missing content. Rather than leaving blank headers or removing them entirely, I commented them out and added a `<Note>` marked as Coming Soon. This preserves the intended structure of the page and signals to future contributors exactly where content needs to be added, ensuring the page scales cleanly as the documentation grows.
+
+The page is inherently step heavy given that it is primarily instructional content accompanied by code blocks. `<Steps>` felt like the natural fit throughout since users are following a sequence of technical directions. The one section that called for something different was the API and Integration Platform, where `<Tabs>` allowed GraphQL, REST API, and Webhooks to each have their own space. A developer looking for a specific code block can go directly to the tab they need rather than scrolling past the others.
+
+---
+
+### Integrations
+
+The Integrations page presented a lot of dense information upfront. The immediate solution was `<Tabs>`, applied across every major integration category including POS systems, Supply Chain distributors, ERP platforms, Communication tools, and Business Intelligence. Rather than scrolling through a wall of content, users can navigate directly to the company or platform they are looking for and get exactly what they need without any of the surrounding noise.
+
+The top-level Integration Categories section was a natural fit for `<CardGroup>` since it serves as the entry point to the page and benefits from the visual landmark that icons and cards provide. The Custom Integrations and Support sections at the bottom followed the same card pattern to keep the calls to action clear and accessible.
+
+---
+
+### Troubleshooting
+
+Troubleshooting was naturally the most step heavy page in the documentation. When someone is trying to resolve an issue, skipping steps is exactly what causes more problems so `<Steps>` serves a functional purpose here beyond aesthetics. It creates a sense of accountability and guides the user through each check in the correct order without ambiguity.
+
+Where multiple platforms needed their own resolution paths, such as the POS Integration Issues section, `<Tabs>` and `<Steps>` were combined so a Square user and a Toast user each follow only the steps relevant to them.
+
+For users who need support beyond what the page covers, the Getting Help section closes with clickable `<CardGroup>` components that send them directly to the right resource, whether that is the knowledge base, live chat, or a support ticket.
+
+---
+
+### Pricing
+
+The Pricing page called for a more restrained approach overall. The Plan Comparison `<CardGroup>` at the top was the most important component decision on the page. Clickable cards with icons give an immediate snapshot of each plan's price and purpose before the user commits to reading further.
+
+The individual plan sections that follow were kept intentionally simple. Pricing pages need to feel transparent and honest, and over componentizing them can create the impression that information is being obscured or dressed up. Plain feature lists with checkmarks communicate everything clearly without any friction.
+
+The FAQ section was a natural fit for `<AccordionGroup>` since people scanning a pricing FAQ are looking for a specific question rather than reading every answer. The accordion lets them find what they need and move on.
+
+The French version was missing several sections that existed in the English original, including the Add-On Services, Billing and Payment, and FAQ sections. These were added to ensure French-speaking users have access to the same depth of information as their English counterparts.
+
+---
+
+### API Reference
+
+The API Reference was the most code heavy page in the documentation, built around a CRUD structure that worked well as vanilla markdown. Reflecting on some of the best documentation sites I have used personally, there is something to be said for a straightforward, reference page where developers can scan quickly and find exactly what they need without UI getting in the way. Breaking it into multiple pages was considered but felt unnecessary given how well the linear structure reads.
+
+The only components added were a `<CardGroup>` for the SDKs and Libraries section to make each language option visually distinct and easily clickable, along with `<Note>` and `<Warning>` callouts placed where they were genuinely needed to flag important information without interrupting the flow of the reference content.
+
+---
+
+## Thank You!
+
+Thank you all for this opportunity this was awesome! I got so familiar with working with Mintlify and would absolutely incorporate it in all of my future projects!!!!!
