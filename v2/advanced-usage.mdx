@@ -5,7 +5,7 @@ description: "Master AI forecasting, IoT monitoring, automation, and enterprise 
 
 ## AI-Powered Demand Forecasting
 
-v2.0's AI forecasting engine uses multiple machine learning models to predict salsa demand with industry-leading accuracy:
+v2.0's AI forecasting engine uses multiple machine learning models to predict salsa demand with industry-leading accuracy.
 
 ### Configuring Advanced Forecasting
 
@@ -129,9 +129,11 @@ end_date="2024-01-31",
 aggregation="hourly"
 )
 
-`````
+````
 
 ### Predictive Maintenance
+
+AI analyzes sensor patterns to predict equipment failures before they occur:
 
 <Steps>
   <Step title="Equipment Profiling">
@@ -152,97 +154,75 @@ aggregation="hourly"
   </Step>
 </Steps>
 
-
 ---
 
 ## Advanced Automation
 
+### Automated Reordering
 
 Let AI manage your ingredient inventory automatically:
+```javascript
+const autoOrderConfig = {
+  enabled: true,
+  suppliers: ["sysco", "us_foods"],
+  rules: {
+    reorder_trigger: "forecast_based", // or "threshold_based"
+    lead_time_buffer: 2, // days
+    safety_stock_level: 1.5, // multiplier
+    max_order_frequency: "daily",
+    budget_constraints: {
+      monthly_max: 50000,
+      per_order_max: 5000,
+    },
+  },
+  approval_workflow: {
+    auto_approve_under: 1000,
+    require_approval_over: 1000,
+    approvers: ["manager@restaurant.com"],
+  },
+};
+````
 
-#### Configuration
-
-````javascript
-    const autoOrderConfig = {
-      enabled: true,
-      suppliers: ["sysco", "us_foods"],
-      rules: {
-        reorder_trigger: "forecast_based",  // or "threshold_based"
-        lead_time_buffer: 2,  // days
-        safety_stock_level: 1.5,  // multiplier
-        max_order_frequency: "daily",
-        budget_constraints: {
-          monthly_max: 50000,
-          per_order_max: 5000
-        }
-      },
-      approval_workflow: {
-        auto_approve_under: 1000,
-        require_approval_over: 1000,
-        approvers: ["manager@restaurant.com"]
-      }
-    };
-    ````
-
-
-#### Order Logic
-
-The AI considers multiple factors:
-
-    1. **Demand Forecast**: Predicted usage for next 7-30 days
-    2. **Current Inventory**: Real-time stock levels
-    3. **Supplier Lead Times**: Historical delivery times
-    4. **Cost Optimization**: Best pricing and minimum order quantities
-    5. **Seasonality**: Seasonal ingredient availability
-    6. **Quality**: Supplier quality scores and ratings
-
-#### Order Monitoring
-
-Track automated orders:
-
-    - Order confirmation and tracking
-    - Delivery status updates
-    - Quality verification upon receipt
-    - Automatic inventory updates
-    - Cost tracking and budget alerts
-
+<CardGroup cols={2}>
+  <Card title="Order Logic" icon="brain">
+    AI considers demand forecasts, real-time stock levels, supplier lead times,
+    cost optimization, seasonal availability, and supplier quality scores.
+  </Card>
+  <Card title="Order Monitoring" icon="truck">
+    Track order confirmations, delivery status, quality verification on receipt,
+    automatic inventory updates, and budget alerts.
+  </Card>
+</CardGroup>
 
 {/* ### Smart Production Scheduling */}
+
 <Note>
-  **Coming Soon**: Smart Production Scheduling is currently in development and will be available in a future update.
+  **Coming Soon**: Smart Production Scheduling is currently in development and
+  will be available in a future update.
 </Note>
+
 ### Workflow Automation
 
 Create custom automation workflows with our visual workflow builder:
 
 <Steps>
   <Step title="Choose Trigger">
-    Select what initiates the workflow:
-    - Time-based (schedule)
-    - Event-based (low stock, quality alert)
-    - Forecast-based (predicted demand spike)
-    - Manual trigger
+    Select what initiates the workflow: - Time-based (schedule) - Event-based
+    (low stock, quality alert) - Forecast-based (predicted demand spike) -
+    Manual trigger
   </Step>
   <Step title="Define Conditions">
-    Set conditions that must be met:
-    - Inventory levels
-    - Staff availability
-    - Equipment status
-    - Budget constraints
+    Set conditions that must be met: - Inventory levels - Staff availability -
+    Equipment status - Budget constraints
   </Step>
   <Step title="Configure Actions">
-    Choose automated actions:
-    - Create production batches
-    - Send notifications
-    - Order ingredients
-    - Update schedules
-    - Generate reports
+    Choose automated actions: - Create production batches - Send notifications -
+    Order ingredients - Update schedules - Generate reports
   </Step>
   <Step title="Set Approvals">
     Optional: require human approval before executing certain actions.
   </Step>
 </Steps>
-
 
 ---
 
@@ -254,19 +234,22 @@ Manage restaurant chains of any size with centralized control:
 
 <CardGroup cols={2}>
   <Card title="Centralized Dashboard" icon="building">
-    View all locations in one place, compare performance, identify top and bottom performers, and share best practices across the organization.
+    View all locations in one place, compare performance, identify top and
+    bottom performers, and share best practices across the organization.
   </Card>
   <Card title="Location Groups" icon="layer-group">
-    Organize locations into regions or brands, apply group-level policies, run regional reports, and manage bulk operations.
+    Organize locations into regions or brands, apply group-level policies, run
+    regional reports, and manage bulk operations.
   </Card>
   <Card title="Recipe Distribution" icon="book">
-    Maintain recipe consistency across locations, push updates to selected sites, allow location-specific modifications, and track version history.
+    Maintain recipe consistency across locations, push updates to selected
+    sites, allow location-specific modifications, and track version history.
   </Card>
   <Card title="Inventory Transfers" icon="arrow-right-arrow-left">
-    Transfer inventory between locations, optimize stock distribution, reduce waste through inter-location transfers, and track costs.
+    Transfer inventory between locations, optimize stock distribution, reduce
+    waste through inter-location transfers, and track costs.
   </Card>
 </CardGroup>
-
 
 ### Advanced RBAC (Role-Based Access Control)
 
@@ -276,41 +259,32 @@ Fine-grained permission management for enterprise security:
 # Example: Custom role definition
 role_name: "Regional Quality Manager"
 permissions:
-  # Location access
   locations:
-    access_level: "region"  # all, region, location, none
+    access_level: "region"
     regions: ["southwest", "west_coast"]
-
-  # Feature permissions
   quality_control:
     view: true
     create: true
     approve: true
     delete: false
-
   production:
     view: true
     create: false
     manage: false
-
   reports:
     view: true
     export: true
     scheduled_reports: true
-
-  # Data permissions
   data_access:
-    pii: false  # Personal Identifiable Information
+    pii: false
     financial: false
     operational: true
-
-  # Administrative
   user_management:
     invite_users: false
     manage_roles: false
-`````
+```
 
-### Compliance, API, & Integration Platform
+### Compliance, API & Integration Platform
 
 Build custom solutions with our enterprise API:
 
@@ -361,9 +335,9 @@ Build custom solutions with our enterprise API:
 
   </Tab>
   <Tab title="Webhooks v2">
-    Enhanced webhook system with guaranteed delivery, event filtering, payload transformation, signature verification, and delivery status tracking:
+    Enhanced webhook system with guaranteed delivery, event filtering, payload
+    transformation, signature verification, and delivery status tracking:
 ```javascript
-    // Webhook payload example
     {
       "event": "quality.alert.created",
       "timestamp": "2024-01-15T10:30:00Z",
@@ -386,6 +360,53 @@ Build custom solutions with our enterprise API:
 
 ---
 
+## Performance Optimization
+
+### Query Optimization
+
+Optimize API queries for large-scale operations:
+
+```graphql
+# Use field-level caching
+query GetLocations @cache(ttl: 300) {
+  locations {
+    id
+    name
+    currentInventory {
+      ingredientId
+      quantity
+    }
+  }
+}
+
+# Use pagination for large datasets
+query GetProductionHistory($first: Int = 50, $after: String) {
+  productionBatches(first: $first, after: $after) {
+    edges {
+      node {
+        id
+        recipeId
+        quantity
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}
+```
+
+### Caching Strategies
+
+- **CDN Caching**: Static resources cached at edge locations for fast global access.
+- **API Response Caching**: Frequently accessed data cached with configurable TTL.
+- **Client-Side Caching**: Use our SDK's built-in caching for repeated queries.
+- **Cache Invalidation**: Automatic cache invalidation on data updates.
+
+---
+
 {/* ## Best Practices */}
 
 <Note>
@@ -393,18 +414,32 @@ Build custom solutions with our enterprise API:
   available in a future update.
 </Note>
 
+---
+
 ## Need Help?
 
 Advanced features require advanced support:
 
-- 📚 **Enterprise Documentation**: Comprehensive guides for enterprise features
-- 👨‍💼 **Dedicated Account Manager**: Personal contact for enterprise customers
-- 🛠️ **Professional Services**: Custom development and integration services
-- 🎓 **Training Programs**: On-site and virtual training for your team
-- 📞 **24/7 Support**: Enterprise support available around the clock
+<CardGroup cols={2}>
+  <Card title="Enterprise Documentation" icon="book">
+    Comprehensive guides covering all advanced and enterprise features in depth.
+  </Card>
+  <Card title="Dedicated Account Manager" icon="user-tie">
+    A personal contact for enterprise customers for strategic guidance and
+    support.
+  </Card>
+  <Card title="Professional Services" icon="screwdriver-wrench">
+    Custom development and integration services tailored to your operation.
+  </Card>
+  <Card title="Training Programs" icon="graduation-cap">
+    On-site and virtual training sessions for your team on all v2.0 features.
+  </Card>
+  <Card title="24/7 Support" icon="headset">
+    Enterprise support available around the clock for critical issues.
+  </Card>
+</CardGroup>
 
 <Note>
-  {" "}
-  **Enterprise Support**: All advanced features include priority support with
+  **Enterprise Support**: All advanced features include priority support with a
   1-hour response SLA for critical issues.
 </Note>
