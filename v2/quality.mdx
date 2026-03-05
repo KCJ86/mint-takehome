@@ -3,13 +3,11 @@ title: "Quality Control - v2.0"
 description: "AI-powered quality prediction with automated IoT testing systems"
 ---
 
-# Quality Control - v2.0
-
-Ensure consistent salsa quality with AI-powered prediction and automated IoT testing.
-
 ## Overview
 
 v2.0 introduces AI quality prediction, automated IoT testing equipment, and computer vision for visual inspection. Catch quality issues before they happen.
+
+---
 
 ## AI Quality Prediction
 
@@ -17,30 +15,46 @@ v2.0 introduces AI quality prediction, automated IoT testing equipment, and comp
 
 AI predicts quality scores before batch completion:
 
-- Analyzes ingredient quality data
-- Monitors production conditions in real-time
-- Predicts final quality score with 95% accuracy
-- Provides early warnings for potential issues
+<CardGroup cols={2}>
+  <Card title="Ingredient Analysis" icon="flask">
+    Analyzes ingredient quality data and production conditions in real-time to
+    predict final quality scores with 95% accuracy.
+  </Card>
+  <Card title="Early Warning System" icon="bell">
+    Provides early warnings for potential issues before they impact your batch,
+    giving you time to intervene.
+  </Card>
+</CardGroup>
 
 ```javascript
 // Example: Get AI quality prediction
 const prediction = await salsa.ai.quality.predict({
   batch_id: "BATCH-2024-001",
-  current_stage: "mixing"
+  current_stage: "mixing",
 });
 
 console.log(`Predicted quality: ${prediction.score}/10`);
 console.log(`Confidence: ${prediction.confidence}%`);
 ```
 
+---
+
 ### Anomaly Detection
 
 AI identifies quality issues in real-time:
 
-- Unusual ingredient combinations
-- Temperature deviations during production
-- Inconsistent mixing times
-- pH level variations
+<CardGroup cols={2}>
+  <Card title="Ingredient Anomalies" icon="triangle-exclamation">
+    Detects unusual ingredient combinations and pH level variations before they
+    affect quality.
+  </Card>
+  <Card title="Production Anomalies" icon="gauge">
+    Flags temperature deviations and inconsistent mixing times during
+    production.
+  </Card>
+</CardGroup>
+
+---
 
 ## IoT Automated Testing
 
@@ -48,23 +62,57 @@ AI identifies quality issues in real-time:
 
 Automated quality tests with IoT devices:
 
-- **pH meters**: Continuous pH monitoring
-- **Viscosity sensors**: Consistency measurements
-- **Color sensors**: Visual consistency checks
-- **Temperature probes**: Production temperature tracking
+<CardGroup cols={2}>
+  <Card title="pH Meters" icon="flask">
+    <Badge color="green" shape="rounded" size="sm">
+      Continuous Monitoring
+    </Badge>
+    Tracks pH levels throughout production to ensure optimal acidity and flavor
+    consistency.
+  </Card>
+  <Card title="Viscosity Sensors" icon="droplet">
+    <Badge color="green" shape="rounded" size="sm">
+      Real-Time
+    </Badge>
+    Measures salsa consistency and texture to maintain uniformity across every
+    batch.
+  </Card>
+  <Card title="Color Sensors" icon="eye">
+    <Badge color="green" shape="rounded" size="sm">
+      Visual Consistency
+    </Badge>
+    Detects color variations that indicate ingredient quality or production
+    issues.
+  </Card>
+  <Card title="Temperature Probes" icon="thermometer">
+    <Badge color="green" shape="rounded" size="sm">
+      Production Tracking
+    </Badge>
+    Monitors temperature at every production stage to ensure food safety
+    compliance.
+  </Card>
+</CardGroup>
 
 ### Computer Vision Inspection
 
 AI-powered visual quality control:
 
-- Automated visual inspection using cameras
-- Defect detection (contamination, inconsistency)
-- Portion control verification
-- Packaging quality checks
+<CardGroup cols={2}>
+  <Card title="Visual Inspection" icon="eye">
+    Automated defect detection using cameras — catches contamination and
+    inconsistency across 100% of production.
+  </Card>
+  <Card title="Portion & Packaging" icon="box">
+    Verifies portion control and packaging quality automatically on every batch.
+  </Card>
+</CardGroup>
 
-> **Note:**
-**New in v2.0**: Computer vision systems can inspect 100% of production, compared to manual sampling in v1.0.
+<Note>
+  **New in v2.0**: Computer vision systems inspect 100% of production, compared
+  to manual sampling in v1.0.
+</Note>
 
+---
 
 ## Quality Scoring
 
@@ -80,69 +128,81 @@ const qualityCheck = await salsa.ai.quality.recordScore({
     visual_ai: 9.2,
     ph_sensor: 8.8,
     viscosity: 9.0,
-    temperature: 10.0
+    temperature: 10.0,
   },
   manual_scores: {
-    taste: 9.5
+    taste: 9.5,
   },
-  ai_analysis: true
+  ai_analysis: true,
 });
 ```
 
+---
+
 ## Predictive Maintenance
 
-AI monitors equipment health:
+<CardGroup cols={2}>
+  <Card title="Equipment Health" icon="wrench">
+    Predicts equipment failures before they occur and identifies calibration
+    drift in testing equipment.
+  </Card>
+  <Card title="Maintenance Scheduling" icon="calendar">
+    Recommends optimal maintenance schedules and reduces downtime by 75%.
+  </Card>
+</CardGroup>
 
-- Predicts equipment failures before they occur
-- Identifies calibration drift in testing equipment
-- Recommends maintenance schedules
-- Reduces downtime by 75%
+---
 
 ## Quality Standards
 
-### Smart Standards
+<CardGroup cols={2}>
+  <Card title="Smart Standards" icon="sliders">
+    AI-adjusted thresholds based on historical data, seasonal variation
+    compensation, supplier quality correlation, and customer feedback
+    integration.
+  </Card>
+  <Card title="Real-Time Compliance" icon="shield-check">
+    Automated HACCP documentation, FDA regulation tracking, real-time violation
+    alerts, and digital audit trails.
+  </Card>
+</CardGroup>
 
-AI-adjusted quality standards:
-
-- Automatic threshold adjustments based on historical data
-- Seasonal variation compensation
-- Supplier quality correlation
-- Customer feedback integration
-
-### Real-Time Compliance
-
-Automated compliance monitoring:
-
-- HACCP automated documentation
-- FDA regulation tracking
-- Real-time violation alerts
-- Digital audit trails
+---
 
 ## Quality Insights
 
-### AI-Powered Analytics
+<CardGroup cols={2}>
+  <Card title="AI-Powered Analytics" icon="chart-line">
+    Root cause analysis for quality issues, ingredient correlation scoring,
+    supplier quality impact analysis, and production condition optimization.
+  </Card>
+  <Card title="Continuous Improvement" icon="arrow-trend-up">
+    Ingredient substitution recommendations, process optimization suggestions,
+    equipment upgrade recommendations, and training needs identification.
+  </Card>
+</CardGroup>
 
-Deep quality insights:
+<Warning>
+  **Critical Quality Alerts**: AI-detected safety issues trigger immediate
+  production halts and manager notifications.
+</Warning>
 
-- Root cause analysis for quality issues
-- Correlation between ingredients and scores
-- Supplier quality impact analysis
-- Production condition optimization
+## Getting Started
 
-### Continuous Improvement
-
-AI suggests quality improvements:
-
-- Ingredient substitution recommendations
-- Process optimization suggestions
-- Equipment upgrade recommendations
-- Training needs identification
-
-> **Warning:**
-**Critical Quality Alerts**: AI-detected safety issues trigger immediate production halts and manager notifications.
-
-
-## Best Practices
-
-
-
+<Steps>
+  <Step title="Connect IoT Testing Equipment">
+    Install pH meters, viscosity sensors, color sensors, and temperature probes in your production areas.
+  </Step>
+  <Step title="Enable AI Quality Prediction">
+    Activate AI predictions in **Quality Control > AI Features** and import at least 90 days of historical quality data.
+  </Step>
+  <Step title="Configure Quality Thresholds">
+    Set your minimum quality scores and alert thresholds in **Quality Control > Standards**. AI will auto-adjust these over time.
+  </Step>
+  <Step title="Set Up Computer Vision">
+    Position cameras at key production checkpoints and run the calibration routine via the mobile app.
+  </Step>
+  <Step title="Monitor & Improve">
+    Review AI quality insights daily and let the system learn your production patterns to improve predictions over time.
+  </Step>
+</Steps>
