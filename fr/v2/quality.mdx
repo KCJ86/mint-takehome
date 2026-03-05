@@ -3,13 +3,11 @@ title: "Contrôle qualité - v2.0"
 description: "Prédiction de qualité alimentée par IA avec systèmes de test IoT automatisés"
 ---
 
-# Contrôle qualité - v2.0
-
-Assurez une qualité de salsa cohérente avec des prédictions alimentées par IA et des tests IoT automatisés.
-
 ## Aperçu
 
 La v2.0 introduit la prédiction de qualité IA, l'équipement de test IoT automatisé et la vision par ordinateur pour l'inspection visuelle. Détectez les problèmes de qualité avant qu'ils ne se produisent.
+
+---
 
 ## Prédiction de qualité IA
 
@@ -17,30 +15,42 @@ La v2.0 introduit la prédiction de qualité IA, l'équipement de test IoT autom
 
 L'IA prédit les scores de qualité avant la fin du lot :
 
-- Analyse les données de qualité des ingrédients
-- Surveille les conditions de production en temps réel
-- Prédit le score de qualité final avec une précision de 95%
-- Fournit des avertissements précoces pour les problèmes potentiels
-
+<CardGroup cols={2}>
+  <Card title="Analyse des ingrédients" icon="flask">
+    Analyse les données de qualité des ingrédients et surveille les conditions de production en temps réel pour prédire les scores finaux avec une précision de 95%.
+  </Card>
+  <Card title="Système d'avertissement précoce" icon="bell">
+    Fournit des avertissements précoces pour les problèmes potentiels avant qu'ils n'impactent votre lot, vous donnant le temps d'intervenir.
+  </Card>
+</CardGroup>
 ```javascript
 // Exemple : Obtenir la prédiction de qualité IA
 const prediction = await salsa.ai.quality.predict({
   batch_id: "BATCH-2024-001",
   current_stage: "mixing"
 });
-
 console.log(`Qualité prévue : ${prediction.score}/10`);
 console.log(`Confiance : ${prediction.confidence}%`);
 ```
+
+---
 
 ### Détection d'anomalies
 
 L'IA identifie les problèmes de qualité en temps réel :
 
-- Combinaisons d'ingrédients inhabituelles
-- Déviations de température pendant la production
-- Temps de mélange incohérents
-- Variations du niveau de pH
+<CardGroup cols={2}>
+  <Card title="Anomalies d'ingrédients" icon="triangle-exclamation">
+    Détecte les combinaisons d'ingrédients inhabituelles et les variations de pH
+    avant qu'elles n'affectent la qualité.
+  </Card>
+  <Card title="Anomalies de production" icon="gauge">
+    Signale les déviations de température et les temps de mélange incohérents
+    pendant la production.
+  </Card>
+</CardGroup>
+
+---
 
 ## Tests IoT automatisés
 
@@ -48,29 +58,62 @@ L'IA identifie les problèmes de qualité en temps réel :
 
 Tests de qualité automatisés avec appareils IoT :
 
-- **pH-mètres** : Surveillance continue du pH
-- **Capteurs de viscosité** : Mesures de consistance
-- **Capteurs de couleur** : Vérifications de consistance visuelle
-- **Sondes de température** : Suivi de la température de production
+<CardGroup cols={2}>
+  <Card title="pH-mètres" icon="flask">
+    <Badge color="green" shape="rounded" size="sm">
+      Surveillance continue
+    </Badge>
+    Surveille les niveaux de pH tout au long de la production pour assurer une
+    acidité et une consistance de saveur optimales.
+  </Card>
+  <Card title="Capteurs de viscosité" icon="droplet">
+    <Badge color="green" shape="rounded" size="sm">
+      Temps réel
+    </Badge>
+    Mesure la consistance et la texture de la salsa pour maintenir l'uniformité
+    sur chaque lot.
+  </Card>
+  <Card title="Capteurs de couleur" icon="eye">
+    <Badge color="green" shape="rounded" size="sm">
+      Consistance visuelle
+    </Badge>
+    Détecte les variations de couleur indiquant des problèmes de qualité des
+    ingrédients ou de production.
+  </Card>
+  <Card title="Sondes de température" icon="thermometer">
+    <Badge color="green" shape="rounded" size="sm">
+      Suivi de production
+    </Badge>
+    Surveille la température à chaque étape de production pour assurer la
+    conformité alimentaire.
+  </Card>
+</CardGroup>
 
 ### Inspection par vision par ordinateur
 
-Contrôle qualité visuel alimenté par IA :
+<CardGroup cols={2}>
+  <Card title="Inspection visuelle" icon="eye">
+    Détection automatisée de défauts par caméras — détecte la contamination et
+    les incohérences sur 100% de la production.
+  </Card>
+  <Card title="Portions et emballage" icon="box">
+    Vérifie automatiquement le contrôle des portions et la qualité d'emballage
+    sur chaque lot.
+  </Card>
+</CardGroup>
 
-- Inspection visuelle automatisée à l'aide de caméras
-- Détection de défauts (contamination, incohérence)
-- Vérification du contrôle des portions
-- Vérifications de qualité d'emballage
+<Note>
+  **Nouveau dans v2.0** : Les systèmes de vision par ordinateur inspectent 100%
+  de la production, par rapport à l'échantillonnage manuel dans v1.0.
+</Note>
 
-> **Note:**
-**Nouveau dans v2.0** : Les systèmes de vision par ordinateur peuvent inspecter 100% de la production, par rapport à l'échantillonnage manuel dans v1.0.
-
+---
 
 ## Notation de qualité
 
 ### Notation améliorée par IA
 
-L'apprentissage automatique améliore l'évaluation de la qualité :
+L'apprentissage automatique améliore l'évaluation de la qualité en combinant les scores automatisés des capteurs avec les saisies manuelles :
 
 ```javascript
 // Exemple : Enregistrer la qualité avec assistance IA
@@ -80,90 +123,101 @@ const qualityCheck = await salsa.ai.quality.recordScore({
     visual_ai: 9.2,
     ph_sensor: 8.8,
     viscosity: 9.0,
-    temperature: 10.0
+    temperature: 10.0,
   },
   manual_scores: {
-    taste: 9.5
+    taste: 9.5,
   },
-  ai_analysis: true
+  ai_analysis: true,
 });
 ```
 
+---
+
 ## Maintenance prédictive
 
-L'IA surveille la santé de l'équipement :
+<CardGroup cols={2}>
+  <Card title="Santé de l'équipement" icon="wrench">
+    Prédit les défaillances d'équipement avant qu'elles ne se produisent et
+    identifie la dérive de calibration dans l'équipement de test.
+  </Card>
+  <Card title="Planification de maintenance" icon="calendar">
+    Recommande des calendriers de maintenance optimaux et réduit les temps
+    d'arrêt de 75%.
+  </Card>
+</CardGroup>
 
-- Prédit les défaillances d'équipement avant qu'elles ne se produisent
-- Identifie la dérive de calibration dans l'équipement de test
-- Recommande des calendriers de maintenance
-- Réduit les temps d'arrêt de 75%
+---
 
 ## Normes de qualité
 
-### Normes adaptatives
+<CardGroup cols={2}>
+  <Card title="Normes adaptatives" icon="sliders">
+    Seuils adaptatifs basés sur les données historiques, ajustements
+    saisonniers, procédures optimisées et benchmarking intelligent de
+    l'industrie.
+  </Card>
+  <Card title="Conformité automatisée" icon="shield-check">
+    Rapports HACCP automatiques, suivi FDA, journaux de température avec alertes
+    IA et registres d'assainissement numériques.
+  </Card>
+</CardGroup>
 
-L'IA ajuste les normes en fonction des données historiques :
-
-- Seuils de qualité adaptatifs
-- Ajustements basés sur la saisonnalité
-- Recommandations de procédures de test optimisées
-- Benchmarking intelligent de l'industrie
-
-### Conformité automatisée
-
-Assurez la conformité avec l'automatisation :
-
-- Génération automatique de rapports HACCP
-- Suivi réglementaire FDA automatisé
-- Journaux de température avec alertes IA
-- Registres d'assainissement numériques
+---
 
 ## Alertes qualité intelligentes
 
-Notifications pilotées par IA :
+<CardGroup cols={2}>
+  <Card title="Alertes prédictives" icon="bell">
+    Notifications avant les problèmes de qualité avec priorité basée sur la
+    gravité et recommandations d'actions correctives.
+  </Card>
+  <Card title="Escalade automatique" icon="triangle-exclamation">
+    Escalade automatique pour les problèmes critiques avec notifications
+    immédiates aux responsables.
+  </Card>
+</CardGroup>
 
-- Alertes prédictives avant les problèmes de qualité
-- Notifications de priorité basées sur la gravité
-- Recommandations d'actions correctives
-- Escalade automatique pour les problèmes critiques
+<Warning>
+  **Alertes critiques alimentées par IA** : Le système apprend à identifier les
+  problèmes de sécurité critiques et peut arrêter automatiquement la production
+  si autorisé.
+</Warning>
 
-> **Warning:**
-**Alertes critiques alimentées par IA** : Le système apprend à identifier les problèmes de sécurité critiques et peut arrêter automatiquement la production si autorisé.
-
+---
 
 ## Rapports de qualité avancés
 
-### Analytique de performance
+<CardGroup cols={2}>
+  <Card title="Analytique de performance" icon="chart-line">
+    Prédictions de tendances, analyse de cause racine automatisée, comparaisons
+    de référence et optimisation de performance du personnel.
+  </Card>
+  <Card title="Apprentissage continu" icon="arrow-trend-up">
+    Apprend des données historiques, s'adapte aux nouveaux ingrédients, améliore
+    la précision des prédictions et partage les apprentissages entre
+    emplacements.
+  </Card>
+</CardGroup>
 
-Surveillez les tendances de qualité avec insights IA :
-
-- Prédictions de tendances de qualité
-- Analyse de cause racine automatisée
-- Comparaisons de référence de l'industrie
-- Optimisation de performance du personnel
-
-### Apprentissage continu
-
-Le système s'améliore avec le temps :
-
-- Apprend des données de qualité historiques
-- S'adapte aux nouveaux ingrédients et recettes
-- Améliore la précision des prédictions
-- Partage les apprentissages entre emplacements
+---
 
 ## Démarrage
 
-
-1. **Installer l'équipement IoT**
-   Configurez les capteurs automatisés et les caméras de vision par ordinateur.
-
-2. **Former le système IA**
-   Laissez l'IA apprendre de vos normes de qualité pendant 2-4 semaines.
-
-3. **Activer les tests automatisés**
-   Activez les tests de qualité automatisés complets.
-
-4. **Examiner les insights IA**
-   Examinez régulièrement les prédictions et recommandations IA.
-
-
+<Steps>
+  <Step title="Installer l'équipement IoT">
+    Configurez les capteurs automatisés et les caméras de vision par ordinateur dans vos zones de production.
+  </Step>
+  <Step title="Former le système IA">
+    Laissez l'IA apprendre de vos normes de qualité pendant 2-4 semaines avec vos données historiques.
+  </Step>
+  <Step title="Activer les tests automatisés">
+    Activez les tests de qualité automatisés complets dans **Contrôle qualité > Fonctionnalités IA**.
+  </Step>
+  <Step title="Configurer les seuils">
+    Définissez vos scores de qualité minimaux dans **Contrôle qualité > Normes**. L'IA les ajustera automatiquement avec le temps.
+  </Step>
+  <Step title="Examiner les insights IA">
+    Examinez régulièrement les prédictions et recommandations IA pour améliorer continuellement votre production.
+  </Step>
+</Steps>
