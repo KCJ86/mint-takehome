@@ -3,31 +3,22 @@ title: "Advanced Usage"
 description: "Master AI forecasting, IoT monitoring, automation, and enterprise features in v2.0"
 ---
 
-# Advanced Usage Guide
-
-Unlock the full potential of Salsa as a Service v2.0 with AI-powered features, IoT integration, advanced automation, and enterprise-grade capabilities.
-
 ## AI-Powered Demand Forecasting
-
-### Understanding the Forecasting Engine
 
 v2.0's AI forecasting engine uses multiple machine learning models to predict salsa demand with industry-leading accuracy:
 
-
-
-
 ### Configuring Advanced Forecasting
 
-
-1. **Select Forecast Horizon**
-   Choose your forecasting window based on your operational needs:
+<Steps>
+  <Step title="Select Forecast Horizon">
+    Choose your forecasting window based on your operational needs:
     - **Short-term (7 days)**: Daily production planning
     - **Medium-term (14 days)**: Ingredient ordering and staffing
     - **Long-term (30+ days)**: Strategic planning and seasonal prep
-
-2. **Configure Data Sources**
-   Connect additional data sources to improve accuracy:
-    ```javascript
+  </Step>
+  <Step title="Configure Data Sources">
+    Connect additional data sources to improve accuracy:
+```javascript
     const forecastConfig = {
       data_sources: {
         pos_sales: true,
@@ -35,24 +26,24 @@ v2.0's AI forecasting engine uses multiple machine learning models to predict sa
         weather_api: "openweathermap",
         events: ["eventbrite", "local_calendar"],
         foot_traffic: "sensor_data",
-        social_media: ["yelp", "google_reviews"]
+        social_media: ["yelp", "google_reviews"],
       },
       model_parameters: {
         confidence_level: 0.95,
         seasonality: "auto_detect",
         trend_sensitivity: "medium",
-        anomaly_detection: true
-      }
+        anomaly_detection: true,
+      },
     };
-    ```
-
-3. **Set Alert Thresholds**
-   Configure alerts for significant forecast changes or anomalies.
-
-4. **Enable Auto-Actions**
-   Let AI automatically adjust production schedules based on forecasts.
-
-
+```
+  </Step>
+  <Step title="Set Alert Thresholds">
+    Configure alerts for significant forecast changes or anomalies.
+  </Step>
+  <Step title="Enable Auto-Actions">
+    Let AI automatically adjust production schedules based on forecasts.
+  </Step>
+</Steps>
 
 ### Interpreting Forecast Results
 
@@ -88,104 +79,90 @@ The AI provides rich forecast data with confidence intervals:
 
 Monitor and improve your forecast accuracy over time:
 
+<CardGroup cols={3}>
+  <Card title="Accuracy Metrics" icon="bullseye">
+    MAPE, RMSE, forecast bias tracking, and confidence interval comparisons
+    between actual and predicted ranges.
+  </Card>
+  <Card title="Model Performance" icon="chart-line">
+    Compare short vs long-term accuracy, recipe-specific performance, seasonal
+    pattern recognition, and event impact prediction.
+  </Card>
+  <Card title="Continuous Learning" icon="brain">
+    Models retrain weekly, adjust weights based on accuracy, adapt to new
+    patterns, and A/B test improvements automatically.
+  </Card>
+</CardGroup>
 
-#### Accuracy Metrics
-
-- **MAPE**: Mean Absolute Percentage Error
-    - **RMSE**: Root Mean Square Error
-    - **Forecast Bias**: Systematic over/under prediction
-    - **Confidence Intervals**: Actual vs predicted ranges
-
-#### Model Performance
-
-View which models perform best for different scenarios:
-    - Short-term vs long-term accuracy
-    - Recipe-specific performance
-    - Seasonal pattern recognition
-    - Event impact prediction
-
-#### Continuous Learning
-
-The AI automatically:
-    - Retrains models weekly with new data
-    - Adjusts weights based on accuracy
-    - Identifies and adapts to new patterns
-    - A/B tests model improvements
-
-
+---
 
 ## IoT Sensor Integration
-
-### Sensor Types and Capabilities
-
-
-
 
 ### Real-Time Monitoring Dashboard
 
 Access comprehensive sensor data in real-time:
 
-> **Note:**
-**Dashboard Features**: Live sensor feeds, historical trends, anomaly alerts, predictive maintenance warnings, and automated reports.
-
-
-```python
-# Example: Query sensor data via API
-from salsa_sdk import SalsaClient
+<Note>
+  **Dashboard Features**: Live sensor feeds, historical trends, anomaly alerts,
+  predictive maintenance warnings, and automated reports.
+</Note>
+```python # Example: Query sensor data via API from salsa_sdk import SalsaClient
 
 client = SalsaClient(api_key="your_api_key")
 
 # Get real-time sensor readings
+
 sensors = client.iot.get_sensors(location="kitchen_1")
 for sensor in sensors:
-    reading = sensor.get_latest_reading()
-    print(f"{sensor.name}: {reading.value} {reading.unit}")
+reading = sensor.get_latest_reading()
+print(f"{sensor.name}: {reading.value} {reading.unit}")
 
     if reading.is_anomaly():
         print(f"⚠️  Alert: {reading.anomaly_details}")
 
 # Query historical data
+
 history = client.iot.query_history(
-    sensor_id="temp_sensor_001",
-    start_date="2024-01-01",
-    end_date="2024-01-31",
-    aggregation="hourly"
+sensor_id="temp_sensor_001",
+start_date="2024-01-01",
+end_date="2024-01-31",
+aggregation="hourly"
 )
-```
+
+`````
 
 ### Predictive Maintenance
 
-AI analyzes sensor patterns to predict equipment failures before they occur:
-
-
-1. **Equipment Profiling**
-   System learns normal operating parameters for each piece of equipment.
-
-2. **Anomaly Detection**
-   ML models detect subtle changes that indicate potential issues:
+<Steps>
+  <Step title="Equipment Profiling">
+    System learns normal operating parameters for each piece of equipment.
+  </Step>
+  <Step title="Anomaly Detection">
+    ML models detect subtle changes that indicate potential issues:
     - Temperature fluctuations
     - Unusual vibration patterns
     - Performance degradation
     - Power consumption changes
+  </Step>
+  <Step title="Failure Prediction">
+    Predicts equipment failures 3-14 days in advance with 85% accuracy.
+  </Step>
+  <Step title="Automated Alerts">
+    Notifies maintenance team with specific recommended actions.
+  </Step>
+</Steps>
 
-3. **Failure Prediction**
-   Predicts equipment failures 3-14 days in advance with 85% accuracy.
 
-4. **Automated Alerts**
-   Notifies maintenance team with specific recommended actions.
-
-
+---
 
 ## Advanced Automation
 
-### Automated Reordering
 
 Let AI manage your ingredient inventory automatically:
 
-
 #### Configuration
 
-```javascript
+````javascript
     const autoOrderConfig = {
       enabled: true,
       suppliers: ["sysco", "us_foods"],
@@ -205,7 +182,8 @@ Let AI manage your ingredient inventory automatically:
         approvers: ["manager@restaurant.com"]
       }
     };
-    ```
+    ````
+
 
 #### Order Logic
 
@@ -229,45 +207,44 @@ Track automated orders:
     - Cost tracking and budget alerts
 
 
-
-### Smart Production Scheduling
-
-AI optimizes production schedules for maximum efficiency:
-
-
-
-
+{/* ### Smart Production Scheduling */}
+<Note>
+  **Coming Soon**: Smart Production Scheduling is currently in development and will be available in a future update.
+</Note>
 ### Workflow Automation
 
 Create custom automation workflows with our visual workflow builder:
 
-
-1. **Choose Trigger**
-   Select what initiates the workflow:
+<Steps>
+  <Step title="Choose Trigger">
+    Select what initiates the workflow:
     - Time-based (schedule)
     - Event-based (low stock, quality alert)
     - Forecast-based (predicted demand spike)
     - Manual trigger
-
-2. **Define Conditions**
-   Set conditions that must be met:
+  </Step>
+  <Step title="Define Conditions">
+    Set conditions that must be met:
     - Inventory levels
     - Staff availability
     - Equipment status
     - Budget constraints
-
-3. **Configure Actions**
-   Choose automated actions:
+  </Step>
+  <Step title="Configure Actions">
+    Choose automated actions:
     - Create production batches
     - Send notifications
     - Order ingredients
     - Update schedules
     - Generate reports
+  </Step>
+  <Step title="Set Approvals">
+    Optional: require human approval before executing certain actions.
+  </Step>
+</Steps>
 
-4. **Set Approvals**
-   Optional: require human approval before executing certain actions.
 
-
+---
 
 ## Enterprise Features
 
@@ -275,35 +252,20 @@ Create custom automation workflows with our visual workflow builder:
 
 Manage restaurant chains of any size with centralized control:
 
-
-#### Centralized Dashboard
-
-- View all locations on a single dashboard
-    - Compare performance across locations
-    - Identify top and bottom performers
-    - Share best practices across the organization
-
-#### Location Groups
-
-- Organize locations into regions or brands
-    - Apply group-level policies and settings
-    - Run regional reports and analytics
-    - Manage bulk operations (updates, rollouts)
-
-#### Recipe Distribution
-
-- Maintain recipe consistency across locations
-    - Push recipe updates to selected locations
-    - Allow location-specific modifications
-    - Track recipe version history
-
-#### Inventory Transfers
-
-- Transfer inventory between locations
-    - Optimize stock distribution
-    - Reduce waste through inter-location transfers
-    - Track transfer history and costs
-
+<CardGroup cols={2}>
+  <Card title="Centralized Dashboard" icon="building">
+    View all locations in one place, compare performance, identify top and bottom performers, and share best practices across the organization.
+  </Card>
+  <Card title="Location Groups" icon="layer-group">
+    Organize locations into regions or brands, apply group-level policies, run regional reports, and manage bulk operations.
+  </Card>
+  <Card title="Recipe Distribution" icon="book">
+    Maintain recipe consistency across locations, push updates to selected sites, allow location-specific modifications, and track version history.
+  </Card>
+  <Card title="Inventory Transfers" icon="arrow-right-arrow-left">
+    Transfer inventory between locations, optimize stock distribution, reduce waste through inter-location transfers, and track costs.
+  </Card>
+</CardGroup>
 
 
 ### Advanced RBAC (Role-Based Access Control)
@@ -346,23 +308,16 @@ permissions:
   user_management:
     invite_users: false
     manage_roles: false
-```
+`````
 
-### Compliance & Audit
-
-
-
-
-### API & Integration Platform
+### Compliance, API, & Integration Platform
 
 Build custom solutions with our enterprise API:
 
-
-#### GraphQL API
-
-Modern, flexible API with real-time subscriptions:
-
-    ```graphql
+<Tabs>
+  <Tab title="GraphQL API">
+    Modern, flexible API with real-time subscriptions:
+```graphql
     query GetProductionForecast {
       forecast(location: "loc_123", days: 7) {
         date
@@ -387,13 +342,12 @@ Modern, flexible API with real-time subscriptions:
         timestamp
       }
     }
-    ```
 
-#### REST API
-
-Traditional REST endpoints for compatibility:
-
-    ```bash
+````
+  </Tab>
+  <Tab title="REST API">
+    Traditional REST endpoints for compatibility:
+```bash
     # Get forecast
     curl -X GET https://api.salsaasaservice.com/v2/forecast \
       -H "Authorization: Bearer YOUR_API_KEY" \
@@ -403,19 +357,12 @@ Traditional REST endpoints for compatibility:
     curl -X POST https://api.salsaasaservice.com/v2/production/batches \
       -H "Authorization: Bearer YOUR_API_KEY" \
       -d '{"recipe_id": "rec_456", "quantity": 5.0}'
-    ```
+````
 
-#### Webhooks v2
-
-Enhanced webhook system with:
-
-    - Guaranteed delivery with retry logic
-    - Event filtering and routing
-    - Payload transformation
-    - Signature verification
-    - Delivery status tracking
-
-    ```javascript
+  </Tab>
+  <Tab title="Webhooks v2">
+    Enhanced webhook system with guaranteed delivery, event filtering, payload transformation, signature verification, and delivery status tracking:
+```javascript
     // Webhook payload example
     {
       "event": "quality.alert.created",
@@ -433,75 +380,18 @@ Enhanced webhook system with:
       },
       "signature": "sha256=abc123..."
     }
-    ```
-
-
-
-## Performance Optimization
-
-### Query Optimization
-
-Optimize API queries for large-scale operations:
-
-```graphql
-# Use field-level caching
-query GetLocations @cache(ttl: 300) {
-  locations {
-    id
-    name
-    # Only request fields you need
-    currentInventory {
-      ingredientId
-      quantity
-    }
-  }
-}
-
-# Use pagination for large datasets
-query GetProductionHistory(
-  $first: Int = 50,
-  $after: String
-) {
-  productionBatches(first: $first, after: $after) {
-    edges {
-      node {
-        id
-        recipeId
-        quantity
-      }
-      cursor
-    }
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-  }
-}
 ```
+  </Tab>
+</Tabs>
 
-### Caching Strategies
+---
 
-Implement caching for optimal performance:
+{/* ## Best Practices */}
 
-
-1. **CDN Caching**
-   Static resources cached at edge locations for fast global access.
-
-2. **API Response Caching**
-   Frequently accessed data cached with configurable TTL.
-
-3. **Client-Side Caching**
-   Use our SDK's built-in caching for repeated queries.
-
-4. **Cache Invalidation**
-   Automatic cache invalidation on data updates.
-
-
-
-## Best Practices
-
-
-
+<Note>
+  **Coming Soon**: Best Practices guide is currently in development and will be
+  available in a future update.
+</Note>
 
 ## Need Help?
 
@@ -513,6 +403,8 @@ Advanced features require advanced support:
 - 🎓 **Training Programs**: On-site and virtual training for your team
 - 📞 **24/7 Support**: Enterprise support available around the clock
 
-> **Note:**
-**Enterprise Support**: All advanced features include priority support with 1-hour response SLA for critical issues.
-
+<Note>
+  {" "}
+  **Enterprise Support**: All advanced features include priority support with
+  1-hour response SLA for critical issues.
+</Note>
