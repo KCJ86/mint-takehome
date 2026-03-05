@@ -7,15 +7,20 @@ description: "Documentation API complète pour v2.0 avec support GraphQL"
 
 L'API v2.0 ajoute le support GraphQL, webhooks améliorés et nouveaux endpoints de prévision IA.
 
+---
+
 ## URL de base
 
 ```
 https://api.salsaasaservice.com/v2
 ```
 
-> **Note:**
-**Nouveau dans v2.0** : Endpoint GraphQL disponible sur `https://api.salsaasaservice.com/graphql`
+<Note>
+  **Nouveau dans v2.0** : Endpoint GraphQL disponible sur
+  `https://api.salsaasaservice.com/graphql`
+</Note>
 
+---
 
 ## Authentification
 
@@ -27,15 +32,19 @@ Toutes les requêtes API nécessitent une authentification avec votre clé API.
 Authorization: Bearer VOTRE_CLE_API
 ```
 
-> **Warning:**
+<Warning>
 **Changement v2.0** : Les clés API v1.0 ne fonctionnent pas avec v2.0. Générez une nouvelle clé depuis **Paramètres > Développeur > API v2.0**.
+</Warning>
 
+---
 
 ## Limites de taux
 
 - **Plan Starter** : 10 000 requêtes par heure (augmenté depuis v1.0)
 - **Plan Professionnel** : 100 000 requêtes par heure
 - **Plan Entreprise** : Illimité
+
+---
 
 ## API GraphQL (Nouveau dans v2.0)
 
@@ -88,12 +97,13 @@ Explorez le schéma GraphQL et testez les requêtes :
 https://api.salsaasaservice.com/graphql/explorer
 ```
 
+---
+
 ## API REST
 
 L'API REST reste disponible pour compatibilité.
 
 ### Endpoints principaux
-
 
 **[Gestion d'inventaire](#inventaire)**  
 Gérez ingrédients, stock et fraîcheur.
@@ -106,8 +116,6 @@ Nouveau dans v2.0 : Gérez capteurs et lectures.
 
 **[Production](#production)**  
 Suivez lots de production et qualité.
-
-
 
 ## Prévisions IA (Nouveau dans v2.0)
 
@@ -160,6 +168,8 @@ Réentraînez le modèle avec de nouvelles données.
 ```http
 POST /v2/ai/forecast/train
 ```
+
+---
 
 ## Capteurs IoT (Nouveau dans v2.0)
 
@@ -219,6 +229,8 @@ POST /v2/iot/sensors/{sensor_id}/alerts
 }
 ```
 
+---
+
 ## Webhooks v2 (Amélioré)
 
 **Nouveau dans v2.0** : Système de webhooks amélioré avec :
@@ -248,11 +260,7 @@ POST /v2/webhooks
 ```json
 {
   "url": "https://votre-app.com/webhooks/salsa",
-  "events": [
-    "forecast.updated",
-    "sensor.alert",
-    "production.batch_completed"
-  ],
+  "events": ["forecast.updated", "sensor.alert", "production.batch_completed"],
   "secret": "votre_secret_webhook",
   "active": true
 }
@@ -279,10 +287,11 @@ POST /v2/webhooks
 }
 ```
 
+---
+
 ## SDKs et bibliothèques
 
 SDKs officiels pour v2.0 :
-
 
 **[JavaScript/Node.js](https://github.com/salsaasaservice/salsa-js-v2)**  
 SDK v2.0 avec support GraphQL et abonnements.
@@ -293,20 +302,22 @@ SDK Python v2.0 avec support IA et IoT.
 **[PHP](https://github.com/salsaasaservice/salsa-php-v2)**  
 SDK PHP v2.0 pour applications web.
 
-
+---
 
 ## Environnement Sandbox
 
 Testez vos intégrations dans un environnement sûr :
 
 **URL Sandbox :**
+
 ```
 https://api-sandbox.salsaasaservice.com/v2
 ```
 
-> **Warning:**
-**Données Sandbox** : L'environnement sandbox utilise des données de test et n'affecte pas votre compte de production.
-
+<Warning>
+  **Données Sandbox** : L'environnement sandbox utilise des données de test et
+  n'affecte pas votre compte de production.
+</Warning>
 
 ## Support
 
@@ -318,5 +329,4 @@ Besoin d'aide avec l'API v2.0 ?
 - 🎥 **Tutoriels** : Tutoriels d'intégration vidéo
 
 > **Note:**
-**Support API amélioré** : Les clients v2.0 reçoivent un support API prioritaire et accès à nos ingénieurs API.
-
+> **Support API amélioré** : Les clients v2.0 reçoivent un support API prioritaire et accès à nos ingénieurs API.
